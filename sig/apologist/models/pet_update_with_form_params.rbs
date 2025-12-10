@@ -1,0 +1,32 @@
+module Apologist
+  module Models
+    type pet_update_with_form_params =
+      { name: String, status: String }
+      & Apologist::Internal::Type::request_parameters
+
+    class PetUpdateWithFormParams < Apologist::Internal::Type::BaseModel
+      extend Apologist::Internal::Type::RequestParameters::Converter
+      include Apologist::Internal::Type::RequestParameters
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      attr_reader status: String?
+
+      def status=: (String) -> String
+
+      def initialize: (
+        ?name: String,
+        ?status: String,
+        ?request_options: Apologist::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        name: String,
+        status: String,
+        request_options: Apologist::RequestOptions
+      }
+    end
+  end
+end

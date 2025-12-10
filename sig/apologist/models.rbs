@@ -1,0 +1,39 @@
+module Apologist
+  class PetAPI = Apologist::Models::PetAPI
+
+  class PetCreateParams = Apologist::Models::PetCreateParams
+
+  class PetDeleteParams = Apologist::Models::PetDeleteParams
+
+  class PetFindByStatusParams = Apologist::Models::PetFindByStatusParams
+
+  class PetFindByTagsParams = Apologist::Models::PetFindByTagsParams
+
+  class PetRetrieveParams = Apologist::Models::PetRetrieveParams
+
+  class PetUpdateParams = Apologist::Models::PetUpdateParams
+
+  class PetUpdateWithFormParams = Apologist::Models::PetUpdateWithFormParams
+
+  class PetUploadImageParams = Apologist::Models::PetUploadImageParams
+
+  module Store = Apologist::Models::Store
+
+  class StoreListInventoryParams = Apologist::Models::StoreListInventoryParams
+
+  class UserAPI = Apologist::Models::UserAPI
+
+  class UserCreateParams = Apologist::Models::UserCreateParams
+
+  class UserCreateWithListParams = Apologist::Models::UserCreateWithListParams
+
+  class UserDeleteParams = Apologist::Models::UserDeleteParams
+
+  class UserLoginParams = Apologist::Models::UserLoginParams
+
+  class UserLogoutParams = Apologist::Models::UserLogoutParams
+
+  class UserRetrieveParams = Apologist::Models::UserRetrieveParams
+
+  class UserUpdateParams = Apologist::Models::UserUpdateParams
+end

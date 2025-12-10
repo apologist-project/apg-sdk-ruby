@@ -1,0 +1,55 @@
+module Apologist
+  module Resources
+    class User
+      def create: (
+        ?id: Integer,
+        ?email: String,
+        ?first_name: String,
+        ?last_name: String,
+        ?password: String,
+        ?phone: String,
+        ?username: String,
+        ?user_status: Integer,
+        ?request_options: Apologist::request_opts
+      ) -> Apologist::UserAPI
+
+      def retrieve: (
+        String username,
+        ?request_options: Apologist::request_opts
+      ) -> Apologist::UserAPI
+
+      def update: (
+        String existing_username,
+        ?id: Integer,
+        ?email: String,
+        ?first_name: String,
+        ?last_name: String,
+        ?password: String,
+        ?phone: String,
+        ?username: String,
+        ?user_status: Integer,
+        ?request_options: Apologist::request_opts
+      ) -> nil
+
+      def delete: (
+        String username,
+        ?request_options: Apologist::request_opts
+      ) -> nil
+
+      def create_with_list: (
+        ?body: ::Array[Apologist::UserAPI],
+        ?request_options: Apologist::request_opts
+      ) -> Apologist::UserAPI
+
+      def login: (
+        ?password: String,
+        ?username: String,
+        ?request_options: Apologist::request_opts
+      ) -> String
+
+      def logout: (?request_options: Apologist::request_opts) -> nil
+
+      def initialize: (client: Apologist::Client) -> void
+    end
+  end
+end

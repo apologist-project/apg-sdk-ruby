@@ -1,0 +1,30 @@
+module Apologist
+  module Models
+    type pet_upload_image_params =
+      { body: Apologist::Internal::file_input, additional_metadata: String }
+      & Apologist::Internal::Type::request_parameters
+
+    class PetUploadImageParams < Apologist::Internal::Type::BaseModel
+      extend Apologist::Internal::Type::RequestParameters::Converter
+      include Apologist::Internal::Type::RequestParameters
+
+      attr_accessor body: Apologist::Internal::file_input
+
+      attr_reader additional_metadata: String?
+
+      def additional_metadata=: (String) -> String
+
+      def initialize: (
+        body: Apologist::Internal::file_input,
+        ?additional_metadata: String,
+        ?request_options: Apologist::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        body: Apologist::Internal::file_input,
+        additional_metadata: String,
+        request_options: Apologist::RequestOptions
+      }
+    end
+  end
+end

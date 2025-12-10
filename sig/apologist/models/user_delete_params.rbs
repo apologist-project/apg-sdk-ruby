@@ -1,0 +1,15 @@
+module Apologist
+  module Models
+    type user_delete_params =
+      {  } & Apologist::Internal::Type::request_parameters
+
+    class UserDeleteParams < Apologist::Internal::Type::BaseModel
+      extend Apologist::Internal::Type::RequestParameters::Converter
+      include Apologist::Internal::Type::RequestParameters
+
+      def initialize: (?request_options: Apologist::request_opts) -> void
+
+      def to_hash: -> { request_options: Apologist::RequestOptions }
+    end
+  end
+end

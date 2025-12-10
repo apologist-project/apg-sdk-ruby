@@ -1,0 +1,17 @@
+module Apologist
+  module Models
+    module Store
+      type order_retrieve_params =
+        {  } & Apologist::Internal::Type::request_parameters
+
+      class OrderRetrieveParams < Apologist::Internal::Type::BaseModel
+        extend Apologist::Internal::Type::RequestParameters::Converter
+        include Apologist::Internal::Type::RequestParameters
+
+        def initialize: (?request_options: Apologist::request_opts) -> void
+
+        def to_hash: -> { request_options: Apologist::RequestOptions }
+      end
+    end
+  end
+end

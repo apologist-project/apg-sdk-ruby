@@ -1,0 +1,32 @@
+module Apologist
+  module Models
+    type user_login_params =
+      { password: String, username: String }
+      & Apologist::Internal::Type::request_parameters
+
+    class UserLoginParams < Apologist::Internal::Type::BaseModel
+      extend Apologist::Internal::Type::RequestParameters::Converter
+      include Apologist::Internal::Type::RequestParameters
+
+      attr_reader password: String?
+
+      def password=: (String) -> String
+
+      attr_reader username: String?
+
+      def username=: (String) -> String
+
+      def initialize: (
+        ?password: String,
+        ?username: String,
+        ?request_options: Apologist::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        password: String,
+        username: String,
+        request_options: Apologist::RequestOptions
+      }
+    end
+  end
+end

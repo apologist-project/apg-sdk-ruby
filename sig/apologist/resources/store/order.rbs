@@ -1,0 +1,29 @@
+module Apologist
+  module Resources
+    class Store
+      class Order
+        def create: (
+          ?id: Integer,
+          ?complete: bool,
+          ?pet_id: Integer,
+          ?quantity: Integer,
+          ?ship_date: Time,
+          ?status: Apologist::Models::Store::StoreOrder::status,
+          ?request_options: Apologist::request_opts
+        ) -> Apologist::Store::StoreOrder
+
+        def retrieve: (
+          Integer order_id,
+          ?request_options: Apologist::request_opts
+        ) -> Apologist::Store::StoreOrder
+
+        def delete: (
+          Integer order_id,
+          ?request_options: Apologist::request_opts
+        ) -> nil
+
+        def initialize: (client: Apologist::Client) -> void
+      end
+    end
+  end
+end

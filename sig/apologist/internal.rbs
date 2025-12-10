@@ -1,0 +1,9 @@
+module Apologist
+  module Internal
+    extend Apologist::Internal::Util::SorbetRuntimeSupport
+
+    type file_input = Pathname | StringIO | IO | String | Apologist::FilePart
+
+    OMIT: Object
+  end
+end

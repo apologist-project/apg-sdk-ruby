@@ -1,0 +1,25 @@
+module Apologist
+  module Models
+    type pet_find_by_tags_params =
+      { tags: ::Array[String] } & Apologist::Internal::Type::request_parameters
+
+    class PetFindByTagsParams < Apologist::Internal::Type::BaseModel
+      extend Apologist::Internal::Type::RequestParameters::Converter
+      include Apologist::Internal::Type::RequestParameters
+
+      attr_reader tags: ::Array[String]?
+
+      def tags=: (::Array[String]) -> ::Array[String]
+
+      def initialize: (
+        ?tags: ::Array[String],
+        ?request_options: Apologist::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        tags: ::Array[String],
+        request_options: Apologist::RequestOptions
+      }
+    end
+  end
+end

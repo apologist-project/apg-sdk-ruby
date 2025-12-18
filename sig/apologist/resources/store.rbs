@@ -1,0 +1,13 @@
+module Apologist
+  module Resources
+    class Store
+      attr_reader order: Apologist::Resources::Store::Order
+
+      def list_inventory: (
+        ?request_options: Apologist::request_opts
+      ) -> Apologist::Models::store_list_inventory_response
+
+      def initialize: (client: Apologist::Client) -> void
+    end
+  end
+end

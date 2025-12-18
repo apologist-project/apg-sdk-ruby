@@ -1,0 +1,7 @@
+module Apologist
+  module Models
+    type store_list_inventory_response = ::Hash[Symbol, Integer]
+
+    StoreListInventoryResponse: Apologist::Internal::Type::Converter
+  end
+end

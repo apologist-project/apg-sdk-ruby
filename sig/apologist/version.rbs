@@ -1,0 +1,3 @@
+module Apologist
+  VERSION: String
+end

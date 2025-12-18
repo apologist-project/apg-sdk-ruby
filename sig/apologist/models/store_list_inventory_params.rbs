@@ -1,0 +1,15 @@
+module Apologist
+  module Models
+    type store_list_inventory_params =
+      {  } & Apologist::Internal::Type::request_parameters
+
+    class StoreListInventoryParams < Apologist::Internal::Type::BaseModel
+      extend Apologist::Internal::Type::RequestParameters::Converter
+      include Apologist::Internal::Type::RequestParameters
+
+      def initialize: (?request_options: Apologist::request_opts) -> void
+
+      def to_hash: -> { request_options: Apologist::RequestOptions }
+    end
+  end
+end

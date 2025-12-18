@@ -1,0 +1,103 @@
+module Apologist
+  module Models
+    type pet_api =
+      {
+        name: String,
+        photo_urls: ::Array[String],
+        id: Integer,
+        category: Apologist::PetAPI::Category,
+        status: Apologist::Models::PetAPI::status,
+        tags: ::Array[Apologist::PetAPI::Tag]
+      }
+
+    class PetAPI < Apologist::Internal::Type::BaseModel
+      attr_accessor name: String
+
+      attr_accessor photo_urls: ::Array[String]
+
+      attr_reader id: Integer?
+
+      def id=: (Integer) -> Integer
+
+      attr_reader category: Apologist::PetAPI::Category?
+
+      def category=: (
+        Apologist::PetAPI::Category
+      ) -> Apologist::PetAPI::Category
+
+      attr_reader status: Apologist::Models::PetAPI::status?
+
+      def status=: (
+        Apologist::Models::PetAPI::status
+      ) -> Apologist::Models::PetAPI::status
+
+      attr_reader tags: ::Array[Apologist::PetAPI::Tag]?
+
+      def tags=: (
+        ::Array[Apologist::PetAPI::Tag]
+      ) -> ::Array[Apologist::PetAPI::Tag]
+
+      def initialize: (
+        name: String,
+        photo_urls: ::Array[String],
+        ?id: Integer,
+        ?category: Apologist::PetAPI::Category,
+        ?status: Apologist::Models::PetAPI::status,
+        ?tags: ::Array[Apologist::PetAPI::Tag]
+      ) -> void
+
+      def to_hash: -> {
+        name: String,
+        photo_urls: ::Array[String],
+        id: Integer,
+        category: Apologist::PetAPI::Category,
+        status: Apologist::Models::PetAPI::status,
+        tags: ::Array[Apologist::PetAPI::Tag]
+      }
+
+      type category = { id: Integer, name: String }
+
+      class Category < Apologist::Internal::Type::BaseModel
+        attr_reader id: Integer?
+
+        def id=: (Integer) -> Integer
+
+        attr_reader name: String?
+
+        def name=: (String) -> String
+
+        def initialize: (?id: Integer, ?name: String) -> void
+
+        def to_hash: -> { id: Integer, name: String }
+      end
+
+      type status = :available | :pending | :sold
+
+      module Status
+        extend Apologist::Internal::Type::Enum
+
+        AVAILABLE: :available
+        PENDING: :pending
+        SOLD: :sold
+
+        def self?.values: -> ::Array[Apologist::Models::PetAPI::status]
+      end
+
+      type tag = { id: Integer, name: String }
+
+      class Tag < Apologist::Internal::Type::BaseModel
+        attr_reader id: Integer?
+
+        def id=: (Integer) -> Integer
+
+        attr_reader name: String?
+
+        def name=: (String) -> String
+
+        def initialize: (?id: Integer, ?name: String) -> void
+
+        def to_hash: -> { id: Integer, name: String }
+      end
+    end
+  end
+end

@@ -1,0 +1,40 @@
+module Apologist
+  module Models
+    type pet_find_by_status_params =
+      { status: Apologist::Models::PetFindByStatusParams::status }
+      & Apologist::Internal::Type::request_parameters
+
+    class PetFindByStatusParams < Apologist::Internal::Type::BaseModel
+      extend Apologist::Internal::Type::RequestParameters::Converter
+      include Apologist::Internal::Type::RequestParameters
+
+      attr_reader status: Apologist::Models::PetFindByStatusParams::status?
+
+      def status=: (
+        Apologist::Models::PetFindByStatusParams::status
+      ) -> Apologist::Models::PetFindByStatusParams::status
+
+      def initialize: (
+        ?status: Apologist::Models::PetFindByStatusParams::status,
+        ?request_options: Apologist::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        status: Apologist::Models::PetFindByStatusParams::status,
+        request_options: Apologist::RequestOptions
+      }
+
+      type status = :available | :pending | :sold
+
+      module Status
+        extend Apologist::Internal::Type::Enum
+
+        AVAILABLE: :available
+        PENDING: :pending
+        SOLD: :sold
+
+        def self?.values: -> ::Array[Apologist::Models::PetFindByStatusParams::status]
+      end
+    end
+  end
+end

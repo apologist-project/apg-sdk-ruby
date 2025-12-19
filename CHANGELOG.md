@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.3 (2025-12-19)
+
+Full Changelog: [v0.0.2...v0.0.3](https://github.com/apologist-project/apg-sdk-ruby/compare/v0.0.2...v0.0.3)
+
+### Bug Fixes
+
+* issue where json.parse errors when receiving HTTP 204 with nobody ([e4f9c98](https://github.com/apologist-project/apg-sdk-ruby/commit/e4f9c982c8ba9789500083941d16319b4e8af286))
+
 ## 0.0.2 (2025-12-17)
 
 Full Changelog: [v0.0.1...v0.0.2](https://github.com/apologist-project/apg-sdk-ruby/compare/v0.0.1...v0.0.2)

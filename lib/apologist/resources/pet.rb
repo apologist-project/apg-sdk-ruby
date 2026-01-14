@@ -172,7 +172,7 @@ module Apologist
       #
       # @param pet_id [Integer] Path param: ID of pet to update
       #
-      # @param body [Pathname, StringIO, IO, String, Apologist::FilePart] Body param:
+      # @param body [Pathname, StringIO, IO, String, Apologist::FilePart] Body param
       #
       # @param additional_metadata [String] Query param: Additional Metadata
       #

@@ -2,10 +2,10 @@
 
 require "test_helper"
 
-describe Apologist-ai::Internal::Types::Enum do
+describe Apologist::Internal::Types::Enum do
   module EnumTest
     module ExampleEnum
-      extend Apologist-ai::Internal::Types::Enum
+      extend Apologist::Internal::Types::Enum
 
       FOO = :foo
       BAR = :bar
@@ -34,7 +34,7 @@ describe Apologist-ai::Internal::Types::Enum do
     end
 
     it "raises an error if value is not a member with strictness on" do
-      assert_raises Apologist-ai::Internal::Errors::TypeError do
+      assert_raises Apologist::Internal::Errors::TypeError do
         EnumTest::ExampleEnum.coerce(1, strict: true)
       end
     end

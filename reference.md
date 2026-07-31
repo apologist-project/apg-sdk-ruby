@@ -1,6 +1,6 @@
 # Reference
 ## Chat
-<details><summary><code>client.chat.<a href="/lib/apologist-ai/chat/client.rb">list_chat_completions</a>() -> Apologist-ai::Chat::Types::ListChatCompletionsResponse</code></summary>
+<details><summary><code>client.chat.<a href="/lib/Apologist/chat/client.rb">list_chat_completions</a>() -> Apologist::Chat::Types::ListChatCompletionsResponse</code></summary>
 <dl>
 <dd>
 
@@ -186,7 +186,7 @@ client.chat.list_chat_completions
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::Chat::RequestOptions` 
+**request_options:** `Apologist::Chat::RequestOptions` 
     
 </dd>
 </dl>
@@ -198,7 +198,7 @@ client.chat.list_chat_completions
 </dl>
 </details>
 
-<details><summary><code>client.chat.<a href="/lib/apologist-ai/chat/client.rb">create_chat_completion</a>(request) -> Apologist-ai::Types::ChatCompletionResponse</code></summary>
+<details><summary><code>client.chat.<a href="/lib/Apologist/chat/client.rb">create_chat_completion</a>(request) -> Apologist::Types::ChatCompletionResponse</code></summary>
 <dl>
 <dd>
 
@@ -242,7 +242,7 @@ client.chat.create_chat_completion(request: {
 <dl>
 <dd>
 
-**request:** `Apologist-ai::Types::ChatCompletionRequest` 
+**request:** `Apologist::Types::ChatCompletionRequest` 
     
 </dd>
 </dl>
@@ -250,7 +250,7 @@ client.chat.create_chat_completion(request: {
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::Chat::RequestOptions` 
+**request_options:** `Apologist::Chat::RequestOptions` 
     
 </dd>
 </dl>
@@ -262,7 +262,7 @@ client.chat.create_chat_completion(request: {
 </dl>
 </details>
 
-<details><summary><code>client.chat.<a href="/lib/apologist-ai/chat/client.rb">like_completion</a>(id:, request) -> Apologist-ai::Types::SuccessResponse</code></summary>
+<details><summary><code>client.chat.<a href="/lib/Apologist/chat/client.rb">like_completion</a>(id:, request) -> Apologist::Types::SuccessResponse</code></summary>
 <dl>
 <dd>
 
@@ -323,7 +323,7 @@ client.chat.like_completion(
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::Chat::RequestOptions` 
+**request_options:** `Apologist::Chat::RequestOptions` 
     
 </dd>
 </dl>
@@ -335,7 +335,7 @@ client.chat.like_completion(
 </dl>
 </details>
 
-<details><summary><code>client.chat.<a href="/lib/apologist-ai/chat/client.rb">flag_completion</a>(id:, request) -> Apologist-ai::Types::SuccessResponse</code></summary>
+<details><summary><code>client.chat.<a href="/lib/Apologist/chat/client.rb">flag_completion</a>(id:, request) -> Apologist::Types::SuccessResponse</code></summary>
 <dl>
 <dd>
 
@@ -396,7 +396,7 @@ client.chat.flag_completion(
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::Chat::RequestOptions` 
+**request_options:** `Apologist::Chat::RequestOptions` 
     
 </dd>
 </dl>
@@ -408,7 +408,7 @@ client.chat.flag_completion(
 </dl>
 </details>
 
-<details><summary><code>client.chat.<a href="/lib/apologist-ai/chat/client.rb">feedback_completion</a>(id:, request) -> Apologist-ai::Types::SuccessResponse</code></summary>
+<details><summary><code>client.chat.<a href="/lib/Apologist/chat/client.rb">feedback_completion</a>(id:, request) -> Apologist::Types::SuccessResponse</code></summary>
 <dl>
 <dd>
 
@@ -469,7 +469,7 @@ client.chat.feedback_completion(
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::Chat::RequestOptions` 
+**request_options:** `Apologist::Chat::RequestOptions` 
     
 </dd>
 </dl>
@@ -481,7 +481,7 @@ client.chat.feedback_completion(
 </dl>
 </details>
 
-<details><summary><code>client.chat.<a href="/lib/apologist-ai/chat/client.rb">share_completion</a>(id:, request) -> Apologist-ai::Types::SuccessResponse</code></summary>
+<details><summary><code>client.chat.<a href="/lib/Apologist/chat/client.rb">share_completion</a>(id:, request) -> Apologist::Types::SuccessResponse</code></summary>
 <dl>
 <dd>
 
@@ -555,7 +555,7 @@ client.chat.share_completion(id: "id")
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::Chat::RequestOptions` 
+**request_options:** `Apologist::Chat::RequestOptions` 
     
 </dd>
 </dl>
@@ -567,7 +567,7 @@ client.chat.share_completion(id: "id")
 </dl>
 </details>
 
-<details><summary><code>client.chat.<a href="/lib/apologist-ai/chat/client.rb">get_chat_completion</a>(id:) -> Apologist-ai::Chat::Types::GetChatCompletionResponse</code></summary>
+<details><summary><code>client.chat.<a href="/lib/Apologist/chat/client.rb">get_chat_completion</a>(id:) -> Apologist::Chat::Types::GetChatCompletionResponse</code></summary>
 <dl>
 <dd>
 
@@ -617,7 +617,7 @@ client.chat.get_chat_completion(id: "id")
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::Chat::RequestOptions` 
+**request_options:** `Apologist::Chat::RequestOptions` 
     
 </dd>
 </dl>
@@ -630,7 +630,7 @@ client.chat.get_chat_completion(id: "id")
 </details>
 
 ## Corpus
-<details><summary><code>client.corpus.<a href="/lib/apologist-ai/corpus/client.rb">search_corpus</a>(request) -> Apologist-ai::Corpus::Types::SearchCorpusResponse</code></summary>
+<details><summary><code>client.corpus.<a href="/lib/Apologist/corpus/client.rb">search_corpus</a>(request) -> Apologist::Corpus::Types::SearchCorpusResponse</code></summary>
 <dl>
 <dd>
 
@@ -696,7 +696,7 @@ client.corpus.search_corpus(query: "query")
 <dl>
 <dd>
 
-**filters:** `Apologist-ai::Corpus::Types::CorpusSearchRequestFilters` 
+**filters:** `Apologist::Corpus::Types::CorpusSearchRequestFilters` 
     
 </dd>
 </dl>
@@ -704,7 +704,7 @@ client.corpus.search_corpus(query: "query")
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::Corpus::RequestOptions` 
+**request_options:** `Apologist::Corpus::RequestOptions` 
     
 </dd>
 </dl>
@@ -716,7 +716,7 @@ client.corpus.search_corpus(query: "query")
 </dl>
 </details>
 
-<details><summary><code>client.corpus.<a href="/lib/apologist-ai/corpus/client.rb">log_corpus_view</a>(model:, id:, request) -> Apologist-ai::Types::SuccessResponse</code></summary>
+<details><summary><code>client.corpus.<a href="/lib/Apologist/corpus/client.rb">log_corpus_view</a>(model:, id:, request) -> Apologist::Types::SuccessResponse</code></summary>
 <dl>
 <dd>
 
@@ -794,7 +794,7 @@ client.corpus.log_corpus_view(
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::Corpus::RequestOptions` 
+**request_options:** `Apologist::Corpus::RequestOptions` 
     
 </dd>
 </dl>
@@ -806,7 +806,7 @@ client.corpus.log_corpus_view(
 </dl>
 </details>
 
-<details><summary><code>client.corpus.<a href="/lib/apologist-ai/corpus/client.rb">log_corpus_impression</a>(model:, id:, request) -> Apologist-ai::Types::SuccessResponse</code></summary>
+<details><summary><code>client.corpus.<a href="/lib/Apologist/corpus/client.rb">log_corpus_impression</a>(model:, id:, request) -> Apologist::Types::SuccessResponse</code></summary>
 <dl>
 <dd>
 
@@ -884,7 +884,7 @@ client.corpus.log_corpus_impression(
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::Corpus::RequestOptions` 
+**request_options:** `Apologist::Corpus::RequestOptions` 
     
 </dd>
 </dl>
@@ -896,7 +896,7 @@ client.corpus.log_corpus_impression(
 </dl>
 </details>
 
-<details><summary><code>client.corpus.<a href="/lib/apologist-ai/corpus/client.rb">log_corpus_referral_redirect</a>(model:, id:) -> Apologist-ai::Types::SuccessResponse</code></summary>
+<details><summary><code>client.corpus.<a href="/lib/Apologist/corpus/client.rb">log_corpus_referral_redirect</a>(model:, id:) -> Apologist::Types::SuccessResponse</code></summary>
 <dl>
 <dd>
 
@@ -982,7 +982,7 @@ client.corpus.log_corpus_referral_redirect(
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::Corpus::RequestOptions` 
+**request_options:** `Apologist::Corpus::RequestOptions` 
     
 </dd>
 </dl>
@@ -994,7 +994,7 @@ client.corpus.log_corpus_referral_redirect(
 </dl>
 </details>
 
-<details><summary><code>client.corpus.<a href="/lib/apologist-ai/corpus/client.rb">log_corpus_referral</a>(model:, id:, request) -> Apologist-ai::Types::SuccessResponse</code></summary>
+<details><summary><code>client.corpus.<a href="/lib/Apologist/corpus/client.rb">log_corpus_referral</a>(model:, id:, request) -> Apologist::Types::SuccessResponse</code></summary>
 <dl>
 <dd>
 
@@ -1072,7 +1072,7 @@ client.corpus.log_corpus_referral(
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::Corpus::RequestOptions` 
+**request_options:** `Apologist::Corpus::RequestOptions` 
     
 </dd>
 </dl>
@@ -1085,7 +1085,7 @@ client.corpus.log_corpus_referral(
 </details>
 
 ## Evaluators
-<details><summary><code>client.evaluators.<a href="/lib/apologist-ai/evaluators/client.rb">list_evaluations</a>(id:) -> Apologist-ai::Evaluators::Types::ListEvaluationsResponse</code></summary>
+<details><summary><code>client.evaluators.<a href="/lib/Apologist/evaluators/client.rb">list_evaluations</a>(id:) -> Apologist::Evaluators::Types::ListEvaluationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -1231,7 +1231,7 @@ client.evaluators.list_evaluations(id: "id")
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::Evaluators::RequestOptions` 
+**request_options:** `Apologist::Evaluators::RequestOptions` 
     
 </dd>
 </dl>
@@ -1243,7 +1243,7 @@ client.evaluators.list_evaluations(id: "id")
 </dl>
 </details>
 
-<details><summary><code>client.evaluators.<a href="/lib/apologist-ai/evaluators/client.rb">evaluate_content</a>(id:, request) -> Apologist-ai::Evaluators::Types::EvaluateContentResponse</code></summary>
+<details><summary><code>client.evaluators.<a href="/lib/Apologist/evaluators/client.rb">evaluate_content</a>(id:, request) -> Apologist::Evaluators::Types::EvaluateContentResponse</code></summary>
 <dl>
 <dd>
 
@@ -1312,7 +1312,7 @@ client.evaluators.evaluate_content(
 <dl>
 <dd>
 
-**content:** `Apologist-ai::Evaluators::Types::EvaluatorRequestContent` 
+**content:** `Apologist::Evaluators::Types::EvaluatorRequestContent` 
     
 </dd>
 </dl>
@@ -1336,7 +1336,7 @@ client.evaluators.evaluate_content(
 <dl>
 <dd>
 
-**reasoning_effort:** `Apologist-ai::Evaluators::Types::EvaluatorRequestReasoningEffort` 
+**reasoning_effort:** `Apologist::Evaluators::Types::EvaluatorRequestReasoningEffort` 
     
 </dd>
 </dl>
@@ -1344,7 +1344,7 @@ client.evaluators.evaluate_content(
 <dl>
 <dd>
 
-**verbosity:** `Apologist-ai::Evaluators::Types::EvaluatorRequestVerbosity` 
+**verbosity:** `Apologist::Evaluators::Types::EvaluatorRequestVerbosity` 
     
 </dd>
 </dl>
@@ -1376,7 +1376,7 @@ client.evaluators.evaluate_content(
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::Evaluators::RequestOptions` 
+**request_options:** `Apologist::Evaluators::RequestOptions` 
     
 </dd>
 </dl>
@@ -1388,7 +1388,7 @@ client.evaluators.evaluate_content(
 </dl>
 </details>
 
-<details><summary><code>client.evaluators.<a href="/lib/apologist-ai/evaluators/client.rb">get_evaluation</a>(id:, evaluation_id:) -> Apologist-ai::Evaluators::Types::GetEvaluationResponse</code></summary>
+<details><summary><code>client.evaluators.<a href="/lib/Apologist/evaluators/client.rb">get_evaluation</a>(id:, evaluation_id:) -> Apologist::Evaluators::Types::GetEvaluationResponse</code></summary>
 <dl>
 <dd>
 
@@ -1449,7 +1449,7 @@ client.evaluators.get_evaluation(
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::Evaluators::RequestOptions` 
+**request_options:** `Apologist::Evaluators::RequestOptions` 
     
 </dd>
 </dl>
@@ -1462,7 +1462,7 @@ client.evaluators.get_evaluation(
 </details>
 
 ## CTAs
-<details><summary><code>client.ct_as.<a href="/lib/apologist-ai/ct_as/client.rb">match_ctas</a>(request) -> Apologist-ai::CtAs::Types::MatchCtasResponse</code></summary>
+<details><summary><code>client.ct_as.<a href="/lib/Apologist/ct_as/client.rb">match_ctas</a>(request) -> Apologist::CtAs::Types::MatchCtasResponse</code></summary>
 <dl>
 <dd>
 
@@ -1506,7 +1506,7 @@ client.ct_as.match_ctas(request: {
 <dl>
 <dd>
 
-**request:** `Apologist-ai::Types::CtaMatchRequest` 
+**request:** `Apologist::Types::CtaMatchRequest` 
     
 </dd>
 </dl>
@@ -1514,7 +1514,7 @@ client.ct_as.match_ctas(request: {
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::CtAs::RequestOptions` 
+**request_options:** `Apologist::CtAs::RequestOptions` 
     
 </dd>
 </dl>
@@ -1526,7 +1526,7 @@ client.ct_as.match_ctas(request: {
 </dl>
 </details>
 
-<details><summary><code>client.ct_as.<a href="/lib/apologist-ai/ct_as/client.rb">log_cta_click</a>(id:, request) -> Apologist-ai::Types::SuccessResponse</code></summary>
+<details><summary><code>client.ct_as.<a href="/lib/Apologist/ct_as/client.rb">log_cta_click</a>(id:, request) -> Apologist::Types::SuccessResponse</code></summary>
 <dl>
 <dd>
 
@@ -1587,7 +1587,7 @@ client.ct_as.log_cta_click(
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::CtAs::RequestOptions` 
+**request_options:** `Apologist::CtAs::RequestOptions` 
     
 </dd>
 </dl>
@@ -1600,7 +1600,7 @@ client.ct_as.log_cta_click(
 </details>
 
 ## Users
-<details><summary><code>client.users.<a href="/lib/apologist-ai/users/client.rb">list_users</a>() -> Apologist-ai::Users::Types::ListUsersResponse</code></summary>
+<details><summary><code>client.users.<a href="/lib/Apologist/users/client.rb">list_users</a>() -> Apologist::Users::Types::ListUsersResponse</code></summary>
 <dl>
 <dd>
 
@@ -1698,7 +1698,7 @@ client.users.list_users
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::Users::RequestOptions` 
+**request_options:** `Apologist::Users::RequestOptions` 
     
 </dd>
 </dl>
@@ -1710,7 +1710,7 @@ client.users.list_users
 </dl>
 </details>
 
-<details><summary><code>client.users.<a href="/lib/apologist-ai/users/client.rb">list_user_flags</a>() -> Apologist-ai::Users::Types::ListUserFlagsResponse</code></summary>
+<details><summary><code>client.users.<a href="/lib/Apologist/users/client.rb">list_user_flags</a>() -> Apologist::Users::Types::ListUserFlagsResponse</code></summary>
 <dl>
 <dd>
 
@@ -1768,7 +1768,7 @@ client.users.list_user_flags
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::Users::RequestOptions` 
+**request_options:** `Apologist::Users::RequestOptions` 
     
 </dd>
 </dl>
@@ -1780,7 +1780,7 @@ client.users.list_user_flags
 </dl>
 </details>
 
-<details><summary><code>client.users.<a href="/lib/apologist-ai/users/client.rb">get_user</a>(user_id:) -> Apologist-ai::Users::Types::GetUserResponse</code></summary>
+<details><summary><code>client.users.<a href="/lib/Apologist/users/client.rb">get_user</a>(user_id:) -> Apologist::Users::Types::GetUserResponse</code></summary>
 <dl>
 <dd>
 
@@ -1830,7 +1830,7 @@ client.users.get_user(user_id: "user_id")
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::Users::RequestOptions` 
+**request_options:** `Apologist::Users::RequestOptions` 
     
 </dd>
 </dl>
@@ -1842,7 +1842,7 @@ client.users.get_user(user_id: "user_id")
 </dl>
 </details>
 
-<details><summary><code>client.users.<a href="/lib/apologist-ai/users/client.rb">update_user</a>(user_id:, request) -> Apologist-ai::Users::Types::UpdateUserResponse</code></summary>
+<details><summary><code>client.users.<a href="/lib/Apologist/users/client.rb">update_user</a>(user_id:, request) -> Apologist::Users::Types::UpdateUserResponse</code></summary>
 <dl>
 <dd>
 
@@ -1900,7 +1900,7 @@ client.users.update_user(user_id: "user_id")
 <dl>
 <dd>
 
-**tags:** `Internal::Types::Array[Apologist-ai::Users::Types::UserUpdateRequestTagsItem]` — Applied tags as a mix of existing tag ids and/or default-language tag names. Unknown ids or names are rejected. Tags are mirror-owned and never created here.
+**tags:** `Internal::Types::Array[Apologist::Users::Types::UserUpdateRequestTagsItem]` — Applied tags as a mix of existing tag ids and/or default-language tag names. Unknown ids or names are rejected. Tags are mirror-owned and never created here.
     
 </dd>
 </dl>
@@ -1916,7 +1916,7 @@ client.users.update_user(user_id: "user_id")
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::Users::RequestOptions` 
+**request_options:** `Apologist::Users::RequestOptions` 
     
 </dd>
 </dl>
@@ -1929,7 +1929,7 @@ client.users.update_user(user_id: "user_id")
 </details>
 
 ## Benchmarks
-<details><summary><code>client.benchmarks.<a href="/lib/apologist-ai/benchmarks/client.rb">list_benchmark_runs</a>(id:) -> Apologist-ai::Benchmarks::Types::ListBenchmarkRunsResponse</code></summary>
+<details><summary><code>client.benchmarks.<a href="/lib/Apologist/benchmarks/client.rb">list_benchmark_runs</a>(id:) -> Apologist::Benchmarks::Types::ListBenchmarkRunsResponse</code></summary>
 <dl>
 <dd>
 
@@ -2067,7 +2067,7 @@ client.benchmarks.list_benchmark_runs(id: "id")
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::Benchmarks::RequestOptions` 
+**request_options:** `Apologist::Benchmarks::RequestOptions` 
     
 </dd>
 </dl>
@@ -2079,7 +2079,7 @@ client.benchmarks.list_benchmark_runs(id: "id")
 </dl>
 </details>
 
-<details><summary><code>client.benchmarks.<a href="/lib/apologist-ai/benchmarks/client.rb">run_benchmark</a>(id:, request) -> Internal::Types::Hash[String, Object]</code></summary>
+<details><summary><code>client.benchmarks.<a href="/lib/Apologist/benchmarks/client.rb">run_benchmark</a>(id:, request) -> Internal::Types::Hash[String, Object]</code></summary>
 <dl>
 <dd>
 
@@ -2129,7 +2129,7 @@ client.benchmarks.run_benchmark(id: "id")
 <dl>
 <dd>
 
-**content:** `Apologist-ai::Benchmarks::Types::BenchmarkRunRequestContent` — Content to evaluate. Required when `source_id` is supplied.
+**content:** `Apologist::Benchmarks::Types::BenchmarkRunRequestContent` — Content to evaluate. Required when `source_id` is supplied.
     
 </dd>
 </dl>
@@ -2177,7 +2177,7 @@ client.benchmarks.run_benchmark(id: "id")
 <dl>
 <dd>
 
-**reasoning_effort:** `Apologist-ai::Benchmarks::Types::BenchmarkRunRequestReasoningEffort` 
+**reasoning_effort:** `Apologist::Benchmarks::Types::BenchmarkRunRequestReasoningEffort` 
     
 </dd>
 </dl>
@@ -2185,7 +2185,7 @@ client.benchmarks.run_benchmark(id: "id")
 <dl>
 <dd>
 
-**verbosity:** `Apologist-ai::Benchmarks::Types::BenchmarkRunRequestVerbosity` 
+**verbosity:** `Apologist::Benchmarks::Types::BenchmarkRunRequestVerbosity` 
     
 </dd>
 </dl>
@@ -2241,7 +2241,7 @@ client.benchmarks.run_benchmark(id: "id")
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::Benchmarks::RequestOptions` 
+**request_options:** `Apologist::Benchmarks::RequestOptions` 
     
 </dd>
 </dl>
@@ -2253,7 +2253,7 @@ client.benchmarks.run_benchmark(id: "id")
 </dl>
 </details>
 
-<details><summary><code>client.benchmarks.<a href="/lib/apologist-ai/benchmarks/client.rb">get_benchmark_run</a>(id:, run_id:) -> Apologist-ai::Benchmarks::Types::GetBenchmarkRunResponse</code></summary>
+<details><summary><code>client.benchmarks.<a href="/lib/Apologist/benchmarks/client.rb">get_benchmark_run</a>(id:, run_id:) -> Apologist::Benchmarks::Types::GetBenchmarkRunResponse</code></summary>
 <dl>
 <dd>
 
@@ -2314,7 +2314,7 @@ client.benchmarks.get_benchmark_run(
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::Benchmarks::RequestOptions` 
+**request_options:** `Apologist::Benchmarks::RequestOptions` 
     
 </dd>
 </dl>
@@ -2327,7 +2327,7 @@ client.benchmarks.get_benchmark_run(
 </details>
 
 ## Channels
-<details><summary><code>client.channels.<a href="/lib/apologist-ai/channels/client.rb">get_discord_channel_status</a>(id:) -> Apologist-ai::Channels::Types::GetDiscordChannelStatusResponse</code></summary>
+<details><summary><code>client.channels.<a href="/lib/Apologist/channels/client.rb">get_discord_channel_status</a>(id:) -> Apologist::Channels::Types::GetDiscordChannelStatusResponse</code></summary>
 <dl>
 <dd>
 
@@ -2377,7 +2377,7 @@ client.channels.get_discord_channel_status(id: "id")
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::Channels::RequestOptions` 
+**request_options:** `Apologist::Channels::RequestOptions` 
     
 </dd>
 </dl>
@@ -2389,7 +2389,7 @@ client.channels.get_discord_channel_status(id: "id")
 </dl>
 </details>
 
-<details><summary><code>client.channels.<a href="/lib/apologist-ai/channels/client.rb">receive_discord_interaction</a>(id:, request) -> </code></summary>
+<details><summary><code>client.channels.<a href="/lib/Apologist/channels/client.rb">receive_discord_interaction</a>(id:, request) -> </code></summary>
 <dl>
 <dd>
 
@@ -2470,7 +2470,7 @@ client.channels.receive_discord_interaction(
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::Channels::RequestOptions` 
+**request_options:** `Apologist::Channels::RequestOptions` 
     
 </dd>
 </dl>
@@ -2482,7 +2482,7 @@ client.channels.receive_discord_interaction(
 </dl>
 </details>
 
-<details><summary><code>client.channels.<a href="/lib/apologist-ai/channels/client.rb">verify_facebook_webhook</a>(id:) -> String</code></summary>
+<details><summary><code>client.channels.<a href="/lib/Apologist/channels/client.rb">verify_facebook_webhook</a>(id:) -> String</code></summary>
 <dl>
 <dd>
 
@@ -2536,7 +2536,7 @@ client.channels.verify_facebook_webhook(
 <dl>
 <dd>
 
-**hub_mode:** `Apologist-ai::Channels::Types::VerifyFacebookWebhookRequestHubMode` 
+**hub_mode:** `Apologist::Channels::Types::VerifyFacebookWebhookRequestHubMode` 
     
 </dd>
 </dl>
@@ -2560,7 +2560,7 @@ client.channels.verify_facebook_webhook(
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::Channels::RequestOptions` 
+**request_options:** `Apologist::Channels::RequestOptions` 
     
 </dd>
 </dl>
@@ -2572,7 +2572,7 @@ client.channels.verify_facebook_webhook(
 </dl>
 </details>
 
-<details><summary><code>client.channels.<a href="/lib/apologist-ai/channels/client.rb">receive_facebook_message</a>(id:, request) -> </code></summary>
+<details><summary><code>client.channels.<a href="/lib/Apologist/channels/client.rb">receive_facebook_message</a>(id:, request) -> </code></summary>
 <dl>
 <dd>
 
@@ -2635,7 +2635,7 @@ client.channels.receive_facebook_message(
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::Channels::RequestOptions` 
+**request_options:** `Apologist::Channels::RequestOptions` 
     
 </dd>
 </dl>
@@ -2647,7 +2647,7 @@ client.channels.receive_facebook_message(
 </dl>
 </details>
 
-<details><summary><code>client.channels.<a href="/lib/apologist-ai/channels/client.rb">get_instagram_privacy_policy</a>(id:) -> String</code></summary>
+<details><summary><code>client.channels.<a href="/lib/Apologist/channels/client.rb">get_instagram_privacy_policy</a>(id:) -> String</code></summary>
 <dl>
 <dd>
 
@@ -2697,7 +2697,7 @@ client.channels.get_instagram_privacy_policy(id: "id")
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::Channels::RequestOptions` 
+**request_options:** `Apologist::Channels::RequestOptions` 
     
 </dd>
 </dl>
@@ -2709,7 +2709,7 @@ client.channels.get_instagram_privacy_policy(id: "id")
 </dl>
 </details>
 
-<details><summary><code>client.channels.<a href="/lib/apologist-ai/channels/client.rb">receive_telegram_update</a>(id:, request) -> </code></summary>
+<details><summary><code>client.channels.<a href="/lib/Apologist/channels/client.rb">receive_telegram_update</a>(id:, request) -> </code></summary>
 <dl>
 <dd>
 
@@ -2772,7 +2772,7 @@ client.channels.receive_telegram_update(
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::Channels::RequestOptions` 
+**request_options:** `Apologist::Channels::RequestOptions` 
     
 </dd>
 </dl>
@@ -2784,7 +2784,7 @@ client.channels.receive_telegram_update(
 </dl>
 </details>
 
-<details><summary><code>client.channels.<a href="/lib/apologist-ai/channels/client.rb">receive_twilio_message</a>(id:, request) -> </code></summary>
+<details><summary><code>client.channels.<a href="/lib/Apologist/channels/client.rb">receive_twilio_message</a>(id:, request) -> </code></summary>
 <dl>
 <dd>
 
@@ -2850,7 +2850,7 @@ client.channels.receive_twilio_message(id: "id")
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::Channels::RequestOptions` 
+**request_options:** `Apologist::Channels::RequestOptions` 
     
 </dd>
 </dl>
@@ -2863,7 +2863,7 @@ client.channels.receive_twilio_message(id: "id")
 </details>
 
 ## Shares
-<details><summary><code>client.shares.<a href="/lib/apologist-ai/shares/client.rb">get_shared_messages</a>(token:) -> Apologist-ai::Shares::Types::GetSharedMessagesResponse</code></summary>
+<details><summary><code>client.shares.<a href="/lib/Apologist/shares/client.rb">get_shared_messages</a>(token:) -> Apologist::Shares::Types::GetSharedMessagesResponse</code></summary>
 <dl>
 <dd>
 
@@ -2913,7 +2913,7 @@ client.shares.get_shared_messages(token: "token")
 <dl>
 <dd>
 
-**request_options:** `Apologist-ai::Shares::RequestOptions` 
+**request_options:** `Apologist::Shares::RequestOptions` 
     
 </dd>
 </dl>

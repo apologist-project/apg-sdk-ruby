@@ -2,15 +2,15 @@
 
 require "test_helper"
 
-describe Apologist-ai::Internal::Types::Model do
+describe Apologist::Internal::Types::Model do
   module StringInteger
-    extend Apologist-ai::Internal::Types::Union
+    extend Apologist::Internal::Types::Union
 
     member String
     member Integer
   end
 
-  class ExampleModel < Apologist-ai::Internal::Types::Model
+  class ExampleModel < Apologist::Internal::Types::Model
     field :name, String
     field :rating, StringInteger, optional: true
     field :year, Integer, optional: true, nullable: true, api_name: "yearOfRelease"
@@ -24,11 +24,11 @@ describe Apologist-ai::Internal::Types::Model do
     field :type, String, default: "example"
   end
 
-  class ExampleChild < Apologist-ai::Internal::Types::Model
+  class ExampleChild < Apologist::Internal::Types::Model
     field :value, String
   end
 
-  class ExampleParent < Apologist-ai::Internal::Types::Model
+  class ExampleParent < Apologist::Internal::Types::Model
     field :child, ExampleChild
   end
 
@@ -113,7 +113,7 @@ describe Apologist-ai::Internal::Types::Model do
   end
 
   describe "#inspect" do
-    class SensitiveModel < Apologist-ai::Internal::Types::Model
+    class SensitiveModel < Apologist::Internal::Types::Model
       field :username, String
       field :password, String
       field :client_secret, String

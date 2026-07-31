@@ -2,26 +2,26 @@
 
 require "test_helper"
 
-describe Apologist-ai::Internal::Types::Utils do
-  Utils = Apologist-ai::Internal::Types::Utils
+describe Apologist::Internal::Types::Utils do
+  Utils = Apologist::Internal::Types::Utils
 
   module TestUtils
-    class M < Apologist-ai::Internal::Types::Model
+    class M < Apologist::Internal::Types::Model
       field :value, String
     end
 
-    class UnionMemberA < Apologist-ai::Internal::Types::Model
+    class UnionMemberA < Apologist::Internal::Types::Model
       literal :type, "A"
       field :only_on_a, String
     end
 
-    class UnionMemberB < Apologist-ai::Internal::Types::Model
+    class UnionMemberB < Apologist::Internal::Types::Model
       literal :type, "B"
       field :only_on_b, String
     end
 
     module U
-      extend Apologist-ai::Internal::Types::Union
+      extend Apologist::Internal::Types::Union
 
       discriminant :type
 
@@ -29,8 +29,8 @@ describe Apologist-ai::Internal::Types::Utils do
       member -> { UnionMemberB }, key: "B"
     end
 
-    SymbolStringHash = Apologist-ai::Internal::Types::Hash[Symbol, String]
-    SymbolModelHash = -> { Apologist-ai::Internal::Types::Hash[Symbol, TestUtils::M] }
+    SymbolStringHash = Apologist::Internal::Types::Hash[Symbol, String]
+    SymbolModelHash = -> { Apologist::Internal::Types::Hash[Symbol, TestUtils::M] }
   end
 
   describe ".coerce" do
@@ -58,7 +58,7 @@ describe Apologist-ai::Internal::Types::Utils do
       end
 
       it "raises an error if value cannot be coerced and strict" do
-        assert_raises Apologist-ai::Internal::Errors::TypeError do
+        assert_raises Apologist::Internal::Errors::TypeError do
           Utils.coerce(String, Object.new, strict: true)
         end
       end
@@ -77,7 +77,7 @@ describe Apologist-ai::Internal::Types::Utils do
       end
 
       it "raises an error if value cannot be coerced and strict" do
-        assert_raises Apologist-ai::Internal::Errors::TypeError do
+        assert_raises Apologist::Internal::Errors::TypeError do
           Utils.coerce(Symbol, Object.new, strict: true)
         end
       end
@@ -100,7 +100,7 @@ describe Apologist-ai::Internal::Types::Utils do
       end
 
       it "raises an error if value cannot be coerced and strict" do
-        assert_raises Apologist-ai::Internal::Errors::TypeError do
+        assert_raises Apologist::Internal::Errors::TypeError do
           Utils.coerce(Integer, Object.new, strict: true)
         end
       end
@@ -122,7 +122,7 @@ describe Apologist-ai::Internal::Types::Utils do
       end
 
       it "raises an error if value cannot be coerced and strict" do
-        assert_raises Apologist-ai::Internal::Errors::TypeError do
+        assert_raises Apologist::Internal::Errors::TypeError do
           Utils.coerce(Float, Object.new, strict: true)
         end
       end
@@ -150,7 +150,7 @@ describe Apologist-ai::Internal::Types::Utils do
 
     describe "Enum" do
       module ExampleEnum
-        extend Apologist-ai::Internal::Types::Enum
+        extend Apologist::Internal::Types::Enum
 
         FOO = :FOO
         BAR = :BAR
@@ -168,9 +168,9 @@ describe Apologist-ai::Internal::Types::Utils do
     end
 
     describe "Array" do
-      StringArray = Apologist-ai::Internal::Types::Array[String]
-      ModelArray = -> { Apologist-ai::Internal::Types::Array[TestUtils::M] }
-      UnionArray = -> { Apologist-ai::Internal::Types::Array[TestUtils::U] }
+      StringArray = Apologist::Internal::Types::Array[String]
+      ModelArray = -> { Apologist::Internal::Types::Array[TestUtils::M] }
+      UnionArray = -> { Apologist::Internal::Types::Array[TestUtils::U] }
 
       it "coerces an array of literals" do
         assert_equal %w[a b c], Utils.coerce(StringArray, %w[a b c])

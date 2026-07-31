@@ -48,9 +48,9 @@ A full reference for this library is available [here](https://github.com/apologi
 Instantiate and use the client with the following:
 
 ```ruby
-require "apologist-ai"
+require "apologist"
 
-client = Apologist-ai::Client.new(api_key: "<value>")
+client = Apologist::Client.new(api_key: "<value>")
 
 client.chat.create_chat_completion(request: {
   key: "value"
@@ -186,18 +186,18 @@ Ruby 3.2.0 or higher.
 This SDK allows you to configure different environments or custom URLs for API requests. You can either use the predefined environments or specify your own custom URL.
 ### Environments
 ```ruby
-require "apologist-ai"
+require "Apologist"
 
-apologist-ai = Apologist-ai::Client.new(
-    base_url: Apologist-ai::Environment::DEFAULT
+Apologist = Apologist::Client.new(
+    base_url: Apologist::Environment::DEFAULT
 )
 ```
 
 ### Custom URL
 ```ruby
-require "apologist-ai"
+require "Apologist"
 
-client = Apologist-ai::Client.new(
+client = Apologist::Client.new(
     base_url: "https://example.com"
 )
 ```
@@ -207,23 +207,23 @@ client = Apologist-ai::Client.new(
 Failed API calls will raise errors that can be rescued from granularly.
 
 ```ruby
-require "apologist-ai"
+require "Apologist"
 
-client = Apologist-ai::Client.new(
+client = Apologist::Client.new(
     base_url: "https://example.com"
 )
 
 begin
     result = client.chat.create_chat_completion
-rescue Apologist-ai::Errors::TimeoutError
+rescue Apologist::Errors::TimeoutError
     puts "API didn't respond before our timeout elapsed"
-rescue Apologist-ai::Errors::ServiceUnavailableError
+rescue Apologist::Errors::ServiceUnavailableError
     puts "API returned status 503, is probably overloaded, try again later"
-rescue Apologist-ai::Errors::ServerError
+rescue Apologist::Errors::ServerError
     puts "API returned some other 5xx status, this is probably a bug"
-rescue Apologist-ai::Errors::ResponseError => e
+rescue Apologist::Errors::ResponseError => e
     puts "API returned an unexpected status other than 5xx: #{e.code} #{e.message}"
-rescue Apologist-ai::Errors::ApiError => e
+rescue Apologist::Errors::ApiError => e
     puts "Some other error occurred when calling the API: #{e.message}"
 end
 ```
@@ -249,9 +249,9 @@ The `retryStatusCodes` configuration controls which [5XX](https://developer.mozi
 Use the `max_retries` option to configure this behavior.
 
 ```ruby
-require "apologist-ai"
+require "Apologist"
 
-client = Apologist-ai::Client.new(
+client = Apologist::Client.new(
     base_url: "https://example.com",
     max_retries: 3  # Configure max retries (default is 2)
 )
@@ -262,7 +262,7 @@ client = Apologist-ai::Client.new(
 The SDK defaults to a 60 second timeout. Use the `timeout` option to configure this behavior.
 
 ```ruby
-require "apologist-ai"
+require "Apologist"
 
 response = client.chat.create_chat_completion(
     ...,
@@ -275,7 +275,7 @@ response = client.chat.create_chat_completion(
 If you would like to send additional headers as part of the request, use the `additional_headers` request option.
 
 ```ruby
-require "apologist-ai"
+require "Apologist"
 
 response = client.chat.create_chat_completion(
     ...,
@@ -292,7 +292,7 @@ response = client.chat.create_chat_completion(
 If you would like to send additional query parameters as part of the request, use the `additional_query_parameters` request option.
 
 ```ruby
-require "apologist-ai"
+require "Apologist"
 
 response = client.chat.create_chat_completion(
     ...,

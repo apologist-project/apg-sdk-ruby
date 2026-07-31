@@ -1,19 +1,13 @@
 # ApologistAi Ruby Library
 
-[![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Fapologist-project%2Fapg-sdk-ruby)
+[![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=ApologistAi%2FRuby)
 
 The ApologistAi Ruby library provides convenient access to the ApologistAi APIs from Ruby.
 
 ## Table of Contents
 
-- [Documentation](#documentation)
-- [Installation](#installation)
 - [Reference](#reference)
 - [Usage](#usage)
-- [Advanced Concepts](#advanced-concepts)
-- [Sorbet](#sorbet)
-- [Versioning](#versioning)
-- [Requirements](#requirements)
 - [Environments](#environments)
 - [Errors](#errors)
 - [Advanced](#advanced)
@@ -23,25 +17,9 @@ The ApologistAi Ruby library provides convenient access to the ApologistAi APIs 
   - [Additional Query Parameters](#additional-query-parameters)
 - [Contributing](#contributing)
 
-## Documentation
-
-Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/apologist).
-
-## Installation
-
-To use this gem, install via Bundler by adding the following to your application's `Gemfile`:
-
-<!-- x-release-please-start-version -->
-
-```ruby
-gem "apologist", "~> 0.0.2"
-```
-
-<!-- x-release-please-end -->
-
 ## Reference
 
-A full reference for this library is available [here](https://github.com/apologist-project/apg-sdk-ruby/blob/HEAD/./reference.md).
+A full reference for this library is available [here](./reference.md).
 
 ## Usage
 
@@ -50,136 +28,12 @@ Instantiate and use the client with the following:
 ```ruby
 require "apologist"
 
-client = Apologist::Client.new(api_key: "<value>")
+client = Apologist::AgentClient.new(api_key: "<value>")
 
 client.chat.create_chat_completion(request: {
   key: "value"
 })
 ```
-
-## Advanced concepts
-
-### BaseModel
-
-All parameter and response objects inherit from `Apologist::Internal::Type::BaseModel`, which provides several conveniences, including:
-
-1. All fields, including unknown ones, are accessible with `obj[:prop]` syntax, and can be destructured with `obj => {prop: prop}` or pattern-matching syntax.
-
-2. Structural equivalence for equality; if two API calls return the same values, comparing the responses with == will return true.
-
-3. Both instances and the classes themselves can be pretty-printed.
-
-4. Helpers such as `#to_h`, `#deep_to_h`, `#to_json`, and `#to_yaml`.
-
-### Making custom or undocumented requests
-
-#### Undocumented properties
-
-You can send undocumented parameters to any endpoint, and read undocumented response properties, like so:
-
-Note: the `extra_` parameters of the same name overrides the documented parameters.
-
-```ruby
-pet =
-  apologist.pet.update(
-    name: "doggie",
-    photo_urls: ["string"],
-    request_options: {
-      extra_query: {my_query_parameter: value},
-      extra_body: {my_body_parameter: value},
-      extra_headers: {"my-header": value}
-    }
-  )
-
-puts(pet[:my_undocumented_property])
-```
-
-#### Undocumented request params
-
-If you want to explicitly send an extra param, you can do so with the `extra_query`, `extra_body`, and `extra_headers` under the `request_options:` parameter when making a request, as seen in the examples above.
-
-#### Undocumented endpoints
-
-To make requests to undocumented endpoints while retaining the benefit of auth, retries, and so on, you can make requests using `client.request`, like so:
-
-```ruby
-response = client.request(
-  method: :post,
-  path: '/undocumented/endpoint',
-  query: {"dog": "woof"},
-  headers: {"useful-header": "interesting-value"},
-  body: {"hello": "world"}
-)
-```
-
-### Concurrency & connection pooling
-
-The `Apologist::Client` instances are threadsafe, but are only are fork-safe when there are no in-flight HTTP requests.
-
-Each instance of `Apologist::Client` has its own HTTP connection pool with a default size of 99. As such, we recommend instantiating the client once per application in most settings.
-
-When all available connections from the pool are checked out, requests wait for a new connection to become available, with queue time counting towards the request timeout.
-
-Unless otherwise specified, other classes in the SDK do not have locks protecting their underlying data structure.
-
-## Sorbet
-
-This library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitions, and has no dependency on sorbet-runtime.
-
-You can provide typesafe request parameters like so:
-
-```ruby
-apologist.pet.update(name: "doggie", photo_urls: ["string"])
-```
-
-Or, equivalently:
-
-```ruby
-# Hashes work, but are not typesafe:
-apologist.pet.update(name: "doggie", photo_urls: ["string"])
-
-# You can also splat a full Params class:
-params = Apologist::PetUpdateParams.new(name: "doggie", photo_urls: ["string"])
-apologist.pet.update(**params)
-```
-
-### Enums
-
-Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:
-
-```ruby
-# :available
-puts(Apologist::PetAPI::Status::AVAILABLE)
-
-# Revealed type: `T.all(Apologist::PetAPI::Status, Symbol)`
-T.reveal_type(Apologist::PetAPI::Status::AVAILABLE)
-```
-
-Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
-
-```ruby
-# Using the enum constants preserves the tagged type information:
-apologist.pet.create(
-  status: Apologist::PetAPI::Status::AVAILABLE,
-  # …
-)
-
-# Literal values are also permissible:
-apologist.pet.create(
-  status: :available,
-  # …
-)
-```
-
-## Versioning
-
-This package follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions. As the library is in initial development and has a major version of `0`, APIs may change at any time.
-
-This package considers improvements to the (non-runtime) `*.rbi` and `*.rbs` type definitions to be non-breaking changes.
-
-## Requirements
-
-Ruby 3.2.0 or higher.
 
 ## Environments
 
@@ -188,7 +42,7 @@ This SDK allows you to configure different environments or custom URLs for API r
 ```ruby
 require "Apologist"
 
-Apologist = Apologist::Client.new(
+Apologist = Apologist::AgentClient.new(
     base_url: Apologist::Environment::DEFAULT
 )
 ```
@@ -197,7 +51,7 @@ Apologist = Apologist::Client.new(
 ```ruby
 require "Apologist"
 
-client = Apologist::Client.new(
+client = Apologist::AgentClient.new(
     base_url: "https://example.com"
 )
 ```
@@ -209,7 +63,7 @@ Failed API calls will raise errors that can be rescued from granularly.
 ```ruby
 require "Apologist"
 
-client = Apologist::Client.new(
+client = Apologist::AgentClient.new(
     base_url: "https://example.com"
 )
 
@@ -251,7 +105,7 @@ Use the `max_retries` option to configure this behavior.
 ```ruby
 require "Apologist"
 
-client = Apologist::Client.new(
+client = Apologist::AgentClient.new(
     base_url: "https://example.com",
     max_retries: 3  # Configure max retries (default is 2)
 )

@@ -4,7 +4,7 @@ require "test_helper"
 require "socket"
 require "zlib"
 
-describe Apologist-ai::Internal::Http::RawClient do
+describe Apologist::Internal::Http::RawClient do
   def make_response(status_code)
     response = Minitest::Mock.new
     response.expect(:code, status_code.to_s)
@@ -13,7 +13,7 @@ describe Apologist-ai::Internal::Http::RawClient do
 
   describe "#should_retry?" do
     let(:client) do
-      Apologist-ai::Internal::Http::RawClient.new(base_url: "https://example.com", max_retries: 3)
+      Apologist::Internal::Http::RawClient.new(base_url: "https://example.com", max_retries: 3)
     end
 
     it "retries on 408 Request Timeout" do
@@ -80,11 +80,11 @@ describe Apologist-ai::Internal::Http::RawClient do
         request_lines
       end
 
-      client = Apologist-ai::Internal::Http::RawClient.new(
+      client = Apologist::Internal::Http::RawClient.new(
         base_url: "http://127.0.0.1:#{port}",
         max_retries: 0
       )
-      request = Apologist-ai::Internal::JSON::Request.new(
+      request = Apologist::Internal::JSON::Request.new(
         base_url: "http://127.0.0.1:#{port}",
         path: "/gzip",
         method: "GET",
@@ -116,13 +116,13 @@ describe Apologist-ai::Internal::Http::RawClient do
 
   describe "#resolve_auth_headers" do
     it "returns an empty hash when no auth provider is configured" do
-      client = Apologist-ai::Internal::Http::RawClient.new(base_url: "https://example.com")
+      client = Apologist::Internal::Http::RawClient.new(base_url: "https://example.com")
 
       assert_equal({}, client.resolve_auth_headers)
     end
 
     it "consults the auth provider on every call so an expired token is refreshed" do
-      client = Apologist-ai::Internal::Http::RawClient.new(
+      client = Apologist::Internal::Http::RawClient.new(
         base_url: "https://example.com",
         auth_provider: RefreshingAuthProvider.new
       )
@@ -134,7 +134,7 @@ describe Apologist-ai::Internal::Http::RawClient do
 
   describe "#build_http_request auth header precedence" do
     let(:client) do
-      Apologist-ai::Internal::Http::RawClient.new(
+      Apologist::Internal::Http::RawClient.new(
         base_url: "https://example.com",
         headers: { "Authorization" => "Bearer STATIC" }
       )

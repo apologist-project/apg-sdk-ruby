@@ -2,27 +2,27 @@
 
 require "test_helper"
 
-describe Apologist-ai::Internal::Types::Union do
-  class Rectangle < Apologist-ai::Internal::Types::Model
+describe Apologist::Internal::Types::Union do
+  class Rectangle < Apologist::Internal::Types::Model
     literal :type, "square"
 
     field :area, Float
   end
 
-  class Circle < Apologist-ai::Internal::Types::Model
+  class Circle < Apologist::Internal::Types::Model
     literal :type, "circle"
 
     field :area, Float
   end
 
-  class Pineapple < Apologist-ai::Internal::Types::Model
+  class Pineapple < Apologist::Internal::Types::Model
     literal :type, "pineapple"
 
     field :area, Float
   end
 
   module Shape
-    extend Apologist-ai::Internal::Types::Union
+    extend Apologist::Internal::Types::Union
 
     discriminant :type
 
@@ -31,7 +31,7 @@ describe Apologist-ai::Internal::Types::Union do
   end
 
   module StringOrInteger
-    extend Apologist-ai::Internal::Types::Union
+    extend Apologist::Internal::Types::Union
 
     member String
     member Integer

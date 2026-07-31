@@ -7,10 +7,11 @@
 # need to add it to the .fernignore file to prevent your changes from being overwritten.
 
 def add_custom_gemspec_data(spec)
-  # Example custom configurations (uncomment and modify as needed)
-
-  # spec.authors = ["Your name"]
-  # spec.email = ["your.email@example.com"]
-  # spec.homepage = "https://github.com/your-org/apologist-ruby"
-  # spec.license = "Your license"
+  spec.authors = ["Apologist"]
+  spec.email = ["support@apologist.ai"]
+  spec.homepage = "https://github.com/apologist-project/apg-sdk-ruby"
+  spec.license = "MIT"
+  spec.metadata["homepage_uri"] = "https://docs.apologist.ai"
+  spec.metadata["source_code_uri"] = "https://github.com/apologist-project/apg-sdk-ruby"
+  spec.metadata["documentation_uri"] = "https://docs.apologist.ai"
 end

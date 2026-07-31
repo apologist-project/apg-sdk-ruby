@@ -1,48 +1,75 @@
-name: CI
-on:
-  push:
-    branches-ignore:
-      - 'generated'
-      - 'codegen/**'
-      - 'integrated/**'
-      - 'stl-preview-head/**'
-      - 'stl-preview-base/**'
-  pull_request:
-    branches-ignore:
-      - 'stl-preview-head/**'
-      - 'stl-preview-base/**'
+name: ci
+
+on: [push, pull_request]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   lint:
-    timeout-minutes: 10
-    name: lint
-    runs-on: ${{ github.repository == 'stainless-sdks/apologist-ruby' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
-    if: github.event_name == 'push' || github.event.pull_request.head.repo.fork
+    runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          bundler-cache: false
-      - run: |-
-          bundle install
+          ruby-version: "3.3"
 
-      - name: Run lints
-        run: ./scripts/lint
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Run Rubocop
+        run: bundle exec rubocop
+
   test:
-    timeout-minutes: 10
-    name: test
-    runs-on: ${{ github.repository == 'stainless-sdks/apologist-ruby' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
-    if: github.event_name == 'push' || github.event.pull_request.head.repo.fork
+    runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          bundler-cache: false
-      - run: |-
-          bundle install
+          ruby-version: "3.3"
 
-      - name: Run tests
-        run: ./scripts/test
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Run Tests
+        run: bundle exec rake test
+
+  publish:
+    name: Publish to RubyGems.org
+    runs-on: ubuntu-latest
+    needs: [lint, test]
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+
+    permissions:
+      id-token: write
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Configure RubyGems credentials
+        uses: rubygems/configure-rubygems-credentials@v1.0.0
+
+      - name: Build gem
+        run: bundle exec rake build
+
+      - name: Push gem to RubyGems
+        run: gem push pkg/*.gem

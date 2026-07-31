@@ -44,6 +44,11 @@ Metrics/ModuleLength:
 Layout/LineLength:
   Enabled: false
 
+# Fern generates lib/Apologist.rb to match the module/gem entrypoint name.
+Naming/FileName:
+  Exclude:
+    - "lib/Apologist.rb"
+
 Naming/VariableNumber:
   EnforcedStyle: normalcase
   Severity: warning

@@ -1,2 +1,5 @@
 custom.gemspec.rb
 .rubocop.yml
+.fern/replay.lock
+.fern/replay.yml
+.gitattributes

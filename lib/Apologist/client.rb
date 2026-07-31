@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Apologist
-  class Client
+  class AgentClient
     # @param api_key [String]
     # @param base_url [String, nil]
     # @param domain [String, nil]
@@ -20,7 +20,7 @@ module Apologist
       @raw_client = Apologist::Internal::Http::RawClient.new(
         base_url: base_url || Apologist::Environment::DEFAULT,
         headers: {
-          "User-Agent" => "apologist/0.0.4",
+          "User-Agent" => "apologist/0.0.5",
           "X-Fern-Language" => "Ruby",
           "x-api-key" => api_key.to_s
         },

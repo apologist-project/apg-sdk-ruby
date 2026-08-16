@@ -7,6 +7,8 @@ module Apologist
 
       field :external_id, -> { String }, optional: true, nullable: false
 
+      field :referral_code, -> { String }, optional: true, nullable: false
+
       field :team_id, -> { Integer }, optional: true, nullable: false
 
       field :created_at, -> { String }, optional: true, nullable: false

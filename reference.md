@@ -2326,6 +2326,372 @@ client.benchmarks.get_benchmark_run(
 </dl>
 </details>
 
+## Agent
+<details><summary><code>client.agent.<a href="/lib/Apologist/agent/client.rb">pause_agent</a>() -> Apologist::Agent::Types::PauseAgentResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Pauses the agent globally and fans out pause transition messages to open conversations. Requires an API key.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.agent.pause_agent
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request_options:** `Apologist::Agent::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agent.<a href="/lib/Apologist/agent/client.rb">resume_agent</a>() -> Apologist::Agent::Types::ResumeAgentResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Resumes the agent globally and fans out resume transition messages to open conversations. Requires an API key.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.agent.resume_agent
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request_options:** `Apologist::Agent::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Conversations
+<details><summary><code>client.conversations.<a href="/lib/Apologist/conversations/client.rb">list_conversations</a>() -> Apologist::Conversations::Types::ListConversationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated list of conversations for the requesting agent, newest first.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.conversations.list_conversations
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**per_page:** `Integer` — Results per page (clamped to 100).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Apologist::Conversations::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.conversations.<a href="/lib/Apologist/conversations/client.rb">get_conversation</a>(id:) -> Apologist::Conversations::Types::GetConversationResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a single conversation by internal UUID or team-scoped external id.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.conversations.get_conversation(id: "id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The conversation UUID or team-scoped external id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Apologist::Conversations::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.conversations.<a href="/lib/Apologist/conversations/client.rb">pause_conversation</a>(id:) -> Apologist::Conversations::Types::PauseConversationResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Pauses the agent on a conversation identified by internal UUID or team-scoped external id. Requires an API key.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.conversations.pause_conversation(id: "id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The conversation UUID or team-scoped external id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Apologist::Conversations::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.conversations.<a href="/lib/Apologist/conversations/client.rb">resume_conversation</a>(id:) -> Apologist::Conversations::Types::ResumeConversationResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Resumes the agent on a conversation identified by internal UUID or team-scoped external id. Requires an API key.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.conversations.resume_conversation(id: "id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The conversation UUID or team-scoped external id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Apologist::Conversations::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Channels
 <details><summary><code>client.channels.<a href="/lib/Apologist/channels/client.rb">get_discord_channel_status</a>(id:) -> Apologist::Channels::Types::GetDiscordChannelStatusResponse</code></summary>
 <dl>
@@ -2988,6 +3354,179 @@ client.channels.receive_twilio_message(id: "id")
 <dd>
 
 **body:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Apologist::Channels::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.channels.<a href="/lib/Apologist/channels/client.rb">verify_whats_app_webhook</a>(id:) -> String</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Handles the Meta WhatsApp Cloud API webhook verification handshake, echoing `hub.challenge` when `hub.verify_token` matches the channel's configured token.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.channels.verify_whats_app_webhook(
+  id: "id",
+  hub_mode: "subscribe",
+  hub_verify_token: "hub.verify_token"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The channel id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hub_mode:** `Apologist::Channels::Types::VerifyWhatsAppWebhookRequestHubMode` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hub_verify_token:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hub_challenge:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Apologist::Channels::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.channels.<a href="/lib/Apologist/channels/client.rb">receive_whats_app_message</a>(id:, request) -> </code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Receives WhatsApp Cloud API message events for the channel. Payload shape is defined by Meta. Signature verification via `x-hub-signature-256` is used when the channel has an App Secret configured; otherwise the webhook relies on URL secrecy and/or an `api_key` query parameter.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.channels.receive_whats_app_message(
+  id: "id",
+  body: {
+    key: "value"
+  }
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The channel id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hub_signature256:** `String` — Meta `sha256=<hex>` HMAC of the raw body keyed with the WhatsApp App Secret. Required when the channel has an App Secret configured and the webhook URL does not include an api_key.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Internal::Types::Hash[String, Object]` — WhatsApp Cloud API webhook payload (`entry` + `changes`).
     
 </dd>
 </dl>

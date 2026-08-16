@@ -402,6 +402,106 @@ module Apologist
         error_class = Apologist::Errors::ResponseError.subclass_for_code(code)
         raise error_class.new(response.body, code: code)
       end
+
+      # Handles the Meta WhatsApp Cloud API webhook verification handshake, echoing `hub.challenge` when
+      # `hub.verify_token` matches the channel's configured token.
+      #
+      # @param request_options [Hash]
+      # @param params [Hash]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      # @option params [Apologist::Channels::Types::VerifyWhatsAppWebhookRequestHubMode] :hub_mode
+      # @option params [String] :hub_verify_token
+      # @option params [String, nil] :hub_challenge
+      #
+      # @example
+      #   client.channels.verify_whats_app_webhook(
+      #     id: "id",
+      #     hub_mode: "subscribe",
+      #     hub_verify_token: "hub.verify_token"
+      #   )
+      #
+      # @return [String]
+      def verify_whats_app_webhook(request_options: {}, **params)
+        params = Apologist::Internal::Types::Utils.normalize_keys(params)
+        query_params = {}
+        query_params["hub.mode"] = params[:hub_mode] if params.key?(:hub_mode)
+        query_params["hub.verify_token"] = params[:hub_verify_token] if params.key?(:hub_verify_token)
+        query_params["hub.challenge"] = params[:hub_challenge] if params.key?(:hub_challenge)
+
+        request = Apologist::Internal::JSON::Request.new(
+          base_url: request_options[:base_url],
+          method: "GET",
+          path: "channels/#{URI.encode_uri_component(params[:id].to_s)}/whatsapp",
+          query: query_params,
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Apologist::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        return if code.between?(200, 299)
+
+        error_class = Apologist::Errors::ResponseError.subclass_for_code(code)
+        raise error_class.new(response.body, code: code)
+      end
+
+      # Receives WhatsApp Cloud API message events for the channel. Payload shape is defined by Meta. Signature
+      # verification via `x-hub-signature-256` is used when the channel has an App Secret configured; otherwise the
+      # webhook relies on URL secrecy and/or an `api_key` query parameter.
+      #
+      # @param request_options [Hash]
+      # @param params [Hash]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      # @option params [String, nil] :hub_signature256
+      #
+      # @example
+      #   client.channels.receive_whats_app_message(
+      #     id: "id",
+      #     body: {
+      #       key: "value"
+      #     }
+      #   )
+      #
+      # @return [untyped]
+      def receive_whats_app_message(request_options: {}, **params)
+        params = Apologist::Internal::Types::Utils.normalize_keys(params)
+        path_param_names = %i[id]
+        body_params = params.except(*path_param_names)
+
+        headers = {}
+        headers["x-hub-signature-256"] = params[:hub_signature256] if params[:hub_signature256]
+
+        request = Apologist::Internal::JSON::Request.new(
+          base_url: request_options[:base_url],
+          method: "POST",
+          path: "channels/#{URI.encode_uri_component(params[:id].to_s)}/whatsapp",
+          headers: headers,
+          body: body_params,
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Apologist::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        return if code.between?(200, 299)
+
+        error_class = Apologist::Errors::ResponseError.subclass_for_code(code)
+        raise error_class.new(response.body, code: code)
+      end
     end
   end
 end

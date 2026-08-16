@@ -20,7 +20,7 @@ module Apologist
       @raw_client = Apologist::Internal::Http::RawClient.new(
         base_url: base_url || Apologist::Environment::DEFAULT,
         headers: {
-          "User-Agent" => "apologist/1.0.5",
+          "User-Agent" => "apologist/1.1.1",
           "X-Fern-Language" => "Ruby",
           "x-api-key" => api_key.to_s
         },
@@ -56,6 +56,16 @@ module Apologist
     # @return [Apologist::Benchmarks::Client]
     def benchmarks
       @benchmarks ||= Apologist::Benchmarks::Client.new(client: @raw_client)
+    end
+
+    # @return [Apologist::Agent::Client]
+    def agent
+      @agent ||= Apologist::Agent::Client.new(client: @raw_client)
+    end
+
+    # @return [Apologist::Conversations::Client]
+    def conversations
+      @conversations ||= Apologist::Conversations::Client.new(client: @raw_client)
     end
 
     # @return [Apologist::Channels::Client]

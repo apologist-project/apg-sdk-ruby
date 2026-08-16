@@ -101,6 +101,94 @@ module Apologist
         raise error_class.new(response.body, code: code)
       end
 
+      # Returns the status of the LINE channel. Used as a lightweight health/verification endpoint.
+      #
+      # @param request_options [Hash]
+      # @param params [Hash]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      #
+      # @example
+      #   client.channels.get_line_channel_status(id: "id")
+      #
+      # @return [Apologist::Channels::Types::GetLineChannelStatusResponse]
+      def get_line_channel_status(request_options: {}, **params)
+        params = Apologist::Internal::Types::Utils.normalize_keys(params)
+        request = Apologist::Internal::JSON::Request.new(
+          base_url: request_options[:base_url],
+          method: "GET",
+          path: "channels/#{URI.encode_uri_component(params[:id].to_s)}/line",
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Apologist::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          Apologist::Channels::Types::GetLineChannelStatusResponse.load(response.body)
+        else
+          error_class = Apologist::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
+      # Receives LINE Messaging API webhook events for the channel. Requests are verified via the `x-line-signature`
+      # HMAC-SHA256 (Base64) header using the channel secret unless an `api_key` is present. Payload shape is defined by
+      # LINE. The route acknowledges quickly and processes text `message` and `follow` events asynchronously.
+      #
+      # @param request_options [Hash]
+      # @param params [Hash]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      # @option params [String, nil] :line_signature
+      #
+      # @example
+      #   client.channels.receive_line_webhook(
+      #     id: "id",
+      #     body: {
+      #       key: "value"
+      #     }
+      #   )
+      #
+      # @return [untyped]
+      def receive_line_webhook(request_options: {}, **params)
+        params = Apologist::Internal::Types::Utils.normalize_keys(params)
+        path_param_names = %i[id]
+        body_params = params.except(*path_param_names)
+
+        headers = {}
+        headers["x-line-signature"] = params[:line_signature] if params[:line_signature]
+
+        request = Apologist::Internal::JSON::Request.new(
+          base_url: request_options[:base_url],
+          method: "POST",
+          path: "channels/#{URI.encode_uri_component(params[:id].to_s)}/line",
+          headers: headers,
+          body: body_params,
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Apologist::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        return if code.between?(200, 299)
+
+        error_class = Apologist::Errors::ResponseError.subclass_for_code(code)
+        raise error_class.new(response.body, code: code)
+      end
+
       # Handles the Meta webhook verification handshake, echoing `hub.challenge` when `hub.verify_token` matches the
       # channel's configured token.
       #

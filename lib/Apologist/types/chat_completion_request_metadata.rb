@@ -19,6 +19,8 @@ module Apologist
 
       field :device, -> { String }, optional: true, nullable: false
 
+      field :referral_code, -> { String }, optional: true, nullable: false
+
       field :shared_prompt, -> { Integer }, optional: true, nullable: false
 
       field :translation, -> { String }, optional: true, nullable: false

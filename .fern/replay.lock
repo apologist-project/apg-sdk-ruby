@@ -12,5 +12,52 @@ generations:
     cli_version: unknown
     generator_versions:
       fernapi/fern-ruby-sdk: 1.20.2
-current_generation: 6726ad0ac6f15cde26612db15428f9e781863027
-patches: []
+  - commit_sha: cd8e3844e905789fae21b4e0fc0ab42555405e60
+    tree_hash: 4973d9c68971e1cae3b8ff0b049f5e9a4890defd
+    timestamp: 2026-08-16T18:22:44.975Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.20.2
+current_generation: cd8e3844e905789fae21b4e0fc0ab42555405e60
+patches:
+  - id: patch-b2534827
+    content_hash: sha256:c0e690c52123f547bfb10b269e15cdf8fc30efc06f659245a89b685ad5f01e00
+    original_commit: b25348270afd9be1b0d136b991afac5bc635c262
+    original_message: Release 1.0.4.
+    original_author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+    base_generation: 42932be2ea16f597d411692a9c3fea3585527c9b
+    files:
+      - lib/Apologist/version.rb
+    patch_content: |+
+      From b25348270afd9be1b0d136b991afac5bc635c262 Mon Sep 17 00:00:00 2001
+      From: "github-actions[bot]"
+       <41898282+github-actions[bot]@users.noreply.github.com>
+      Date: Fri, 31 Jul 2026 18:29:08 +0000
+      Subject: [PATCH] Release 1.0.4.
+
+      ---
+       lib/Apologist/version.rb | 2 +-
+       1 file changed, 1 insertion(+), 1 deletion(-)
+
+      diff --git a/lib/Apologist/version.rb b/lib/Apologist/version.rb
+      index 5597de4..c5bf2b6 100644
+      --- a/lib/Apologist/version.rb
+      +++ b/lib/Apologist/version.rb
+      @@ -1,5 +1,5 @@
+       # frozen_string_literal: true
+       
+       module Apologist
+      -  VERSION = "1.0.3"
+      +  VERSION = "1.0.4"
+       end
+      -- 
+      2.52.0
+
+    theirs_snapshot:
+      lib/Apologist/version.rb: |
+        # frozen_string_literal: true
+
+        module Apologist
+          VERSION = "1.0.4"
+        end
+    status: unresolved

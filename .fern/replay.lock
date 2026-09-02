@@ -24,7 +24,13 @@ generations:
     cli_version: unknown
     generator_versions:
       fernapi/fern-ruby-sdk: 1.20.2
-current_generation: 9f892528827622170ef9dbf8ae8bd2af9b36ab49
+  - commit_sha: 7d05601bdc8364b2c806f2430d711872f9998785
+    tree_hash: 52b7e8fc3358219c2c094920c3c14d346089bc4d
+    timestamp: 2026-09-02T05:19:15.396Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-ruby-sdk: 1.20.2
+current_generation: 7d05601bdc8364b2c806f2430d711872f9998785
 patches:
   - id: patch-b2534827
     content_hash: sha256:c0e690c52123f547bfb10b269e15cdf8fc30efc06f659245a89b685ad5f01e00
@@ -105,5 +111,46 @@ patches:
 
         module Apologist
           VERSION = "1.1.0"
+        end
+    status: unresolved
+  - id: patch-2afb3d61
+    content_hash: sha256:bf60971fdebd9e1e58cef417a761dad3a542dbda181e544a9f55b65463c8b2fa
+    original_commit: 2afb3d61ed0a4036a725ca29901a58d546ff2d89
+    original_message: Release 1.2.0.
+    original_author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+    base_generation: 9b9deb35199497354dd4ebe77eaa3d2dd758a68e
+    files:
+      - lib/Apologist/version.rb
+    patch_content: |+
+      From 2afb3d61ed0a4036a725ca29901a58d546ff2d89 Mon Sep 17 00:00:00 2001
+      From: "github-actions[bot]"
+       <41898282+github-actions[bot]@users.noreply.github.com>
+      Date: Sun, 16 Aug 2026 19:28:11 +0000
+      Subject: [PATCH] Release 1.2.0.
+
+      ---
+       lib/Apologist/version.rb | 2 +-
+       1 file changed, 1 insertion(+), 1 deletion(-)
+
+      diff --git a/lib/Apologist/version.rb b/lib/Apologist/version.rb
+      index f86c00b..cb12f87 100644
+      --- a/lib/Apologist/version.rb
+      +++ b/lib/Apologist/version.rb
+      @@ -1,5 +1,5 @@
+       # frozen_string_literal: true
+       
+       module Apologist
+      -  VERSION = "1.1.1"
+      +  VERSION = "1.2.0"
+       end
+      -- 
+      2.52.0
+
+    theirs_snapshot:
+      lib/Apologist/version.rb: |
+        # frozen_string_literal: true
+
+        module Apologist
+          VERSION = "1.2.0"
         end
     status: unresolved

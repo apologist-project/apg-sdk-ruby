@@ -20,7 +20,7 @@ module Apologist
       @raw_client = Apologist::Internal::Http::RawClient.new(
         base_url: base_url || Apologist::Environment::DEFAULT,
         headers: {
-          "User-Agent" => "apologist/1.1.1",
+          "User-Agent" => "apologist/1.2.1",
           "X-Fern-Language" => "Ruby",
           "x-api-key" => api_key.to_s
         },

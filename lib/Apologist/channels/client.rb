@@ -10,6 +10,98 @@ module Apologist
         @client = client
       end
 
+      # Returns the status of the Chatwoot channel. Used as a lightweight health/verification endpoint.
+      #
+      # @param request_options [Hash]
+      # @param params [Hash]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      #
+      # @example
+      #   client.channels.get_chatwoot_channel_status(id: "id")
+      #
+      # @return [Apologist::Channels::Types::GetChatwootChannelStatusResponse]
+      def get_chatwoot_channel_status(request_options: {}, **params)
+        params = Apologist::Internal::Types::Utils.normalize_keys(params)
+        request = Apologist::Internal::JSON::Request.new(
+          base_url: request_options[:base_url],
+          method: "GET",
+          path: "channels/#{URI.encode_uri_component(params[:id].to_s)}/chatwoot",
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Apologist::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          Apologist::Channels::Types::GetChatwootChannelStatusResponse.load(response.body)
+        else
+          error_class = Apologist::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
+      # Receives Chatwoot Agent Bot webhook events for the channel. Chatwoot owns the messaging inbox (Facebook, website
+      # widget, and others). This Agent replies through the Chatwoot API and maps native bot handoff to conversation
+      # pause/resume. Requests are verified via the `X-Chatwoot-Signature` HMAC-SHA256 header using the configured
+      # webhook secret unless an `api_key` is present and no secret is set. The route acknowledges immediately (Chatwoot
+      # times out in about 5 seconds) and processes events asynchronously.
+      #
+      # @param request_options [Hash]
+      # @param params [Hash]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      # @option params [String, nil] :chatwoot_signature
+      # @option params [String, nil] :chatwoot_timestamp
+      #
+      # @example
+      #   client.channels.receive_chatwoot_webhook(
+      #     id: "id",
+      #     body: {
+      #       key: "value"
+      #     }
+      #   )
+      #
+      # @return [untyped]
+      def receive_chatwoot_webhook(request_options: {}, **params)
+        params = Apologist::Internal::Types::Utils.normalize_keys(params)
+        path_param_names = %i[id]
+        body_params = params.except(*path_param_names)
+
+        headers = {}
+        headers["X-Chatwoot-Signature"] = params[:chatwoot_signature] if params[:chatwoot_signature]
+        headers["X-Chatwoot-Timestamp"] = params[:chatwoot_timestamp] if params[:chatwoot_timestamp]
+
+        request = Apologist::Internal::JSON::Request.new(
+          base_url: request_options[:base_url],
+          method: "POST",
+          path: "channels/#{URI.encode_uri_component(params[:id].to_s)}/chatwoot",
+          headers: headers,
+          body: body_params,
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Apologist::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        return if code.between?(200, 299)
+
+        error_class = Apologist::Errors::ResponseError.subclass_for_code(code)
+        raise error_class.new(response.body, code: code)
+      end
+
       # Returns the status of the Discord channel. Used as a lightweight health/verification endpoint.
       #
       # @param request_options [Hash]

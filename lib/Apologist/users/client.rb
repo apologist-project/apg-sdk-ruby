@@ -188,6 +188,83 @@ module Apologist
           raise error_class.new(response.body, code: code)
         end
       end
+
+      # Replaces this user's message-adjacent text with a placeholder. Conversation rows, identifiers, flags, and
+      # analytics identity stay in place. Repeat calls finish leftover rows.
+      #
+      # @param request_options [Hash]
+      # @param params [Hash]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :user_id
+      #
+      # @example
+      #   client.users.scrub_user(user_id: "user_id")
+      #
+      # @return [Apologist::Users::Types::ScrubUserResponse]
+      def scrub_user(request_options: {}, **params)
+        params = Apologist::Internal::Types::Utils.normalize_keys(params)
+        request = Apologist::Internal::JSON::Request.new(
+          base_url: request_options[:base_url],
+          method: "POST",
+          path: "users/#{URI.encode_uri_component(params[:user_id].to_s)}/scrub",
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Apologist::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          Apologist::Users::Types::ScrubUserResponse.load(response.body)
+        else
+          error_class = Apologist::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
+      # Redacts detected personal data in this user's message-adjacent text with regex, then an optional hosted
+      # redaction service when the Agent has that option on. Conversation rows, identifiers, flags, and analytics
+      # identity stay in place. Repeat calls finish leftover rows and skip text that is already redacted.
+      #
+      # @param request_options [Hash]
+      # @param params [Hash]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :user_id
+      #
+      # @example
+      #   client.users.anonymize_user(user_id: "user_id")
+      #
+      # @return [Apologist::Users::Types::AnonymizeUserResponse]
+      def anonymize_user(request_options: {}, **params)
+        params = Apologist::Internal::Types::Utils.normalize_keys(params)
+        request = Apologist::Internal::JSON::Request.new(
+          base_url: request_options[:base_url],
+          method: "POST",
+          path: "users/#{URI.encode_uri_component(params[:user_id].to_s)}/anonymize",
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Apologist::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          Apologist::Users::Types::AnonymizeUserResponse.load(response.body)
+        else
+          error_class = Apologist::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
     end
   end
 end

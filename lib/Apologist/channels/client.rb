@@ -54,29 +54,56 @@ module Apologist
       # times out in about 5 seconds) and processes events asynchronously.
       #
       # @param request_options [Hash]
-      # @param params [Hash]
+      # @param params [Apologist::Channels::Types::ChatwootWebhookPayload]
       # @option request_options [String] :base_url
       # @option request_options [Hash{String => Object}] :additional_headers
       # @option request_options [Hash{String => Object}] :additional_query_parameters
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
-      # @option params [String] :id
+      # @option params [String] :channel_id
       # @option params [String, nil] :chatwoot_signature
       # @option params [String, nil] :chatwoot_timestamp
       #
       # @example
       #   client.channels.receive_chatwoot_webhook(
-      #     id: "id",
-      #     body: {
-      #       key: "value"
+      #     channel_id: "91",
+      #     chatwoot_signature: "sha256=2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+      #     chatwoot_timestamp: "1710000000",
+      #     event: "message_created",
+      #     id: 9001,
+      #     content: "Hello from Messenger",
+      #     message_type: "incoming",
+      #     private: false,
+      #     account: {
+      #       id: 7
+      #     },
+      #     sender: {
+      #       id: 55,
+      #       name: "Pat",
+      #       type: "contact"
+      #     },
+      #     conversation: {
+      #       id: 42,
+      #       status: "pending",
+      #       account: {
+      #         id: 7
+      #       },
+      #       meta: {
+      #         assignee_type: "AgentBot",
+      #         sender: {
+      #           id: 55,
+      #           name: "Pat"
+      #         }
+      #       }
       #     }
       #   )
       #
       # @return [untyped]
       def receive_chatwoot_webhook(request_options: {}, **params)
         params = Apologist::Internal::Types::Utils.normalize_keys(params)
-        path_param_names = %i[id]
-        body_params = params.except(*path_param_names)
+        request_data = Apologist::Channels::Types::ChatwootWebhookPayload.new(params).to_h
+        non_body_param_names = %w[channelId X-Chatwoot-Signature X-Chatwoot-Timestamp]
+        body = request_data.except(*non_body_param_names)
 
         headers = {}
         headers["X-Chatwoot-Signature"] = params[:chatwoot_signature] if params[:chatwoot_signature]
@@ -85,9 +112,9 @@ module Apologist
         request = Apologist::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "POST",
-          path: "channels/#{URI.encode_uri_component(params[:id].to_s)}/chatwoot",
+          path: "channels/#{URI.encode_uri_component(params[:channel_id].to_s)}/chatwoot",
           headers: headers,
-          body: body_params,
+          body: body,
           request_options: request_options
         )
         begin
@@ -495,8 +522,8 @@ module Apologist
         raise error_class.new(response.body, code: code)
       end
 
-      # Handles the Meta WhatsApp Cloud API webhook verification handshake, echoing `hub.challenge` when
-      # `hub.verify_token` matches the channel's configured token.
+      # Handles the Meta WhatsApp Cloud API webhook verification handshake. Requires an `api_key` query parameter or
+      # `x-api-key` header, then echoes `hub.challenge` when `hub.verify_token` matches the channel's configured token.
       #
       # @param request_options [Hash]
       # @param params [Hash]
@@ -544,9 +571,9 @@ module Apologist
         raise error_class.new(response.body, code: code)
       end
 
-      # Receives WhatsApp Cloud API message events for the channel. Payload shape is defined by Meta. Signature
-      # verification via `x-hub-signature-256` is used when the channel has an App Secret configured; otherwise the
-      # webhook relies on URL secrecy and/or an `api_key` query parameter.
+      # Receives WhatsApp Cloud API message events for the channel. Payload shape is defined by Meta. An `api_key` query
+      # parameter or `x-api-key` header is required. Signature verification via `x-hub-signature-256` is also required
+      # when the channel has an App Secret configured.
       #
       # @param request_options [Hash]
       # @param params [Hash]

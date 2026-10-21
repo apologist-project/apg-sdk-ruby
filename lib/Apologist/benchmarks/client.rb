@@ -74,7 +74,8 @@ module Apologist
       end
 
       # Executes a benchmark run and returns the aggregated result with nested evaluators, questions, and a flat
-      # evaluations array.
+      # evaluations array. A run that cannot finish inside one request returns 202 with `completed_at` null and
+      # continues in the background. Poll Get a benchmark run until `completed_at` is set.
       #
       # @param request_options [Hash]
       # @param params [Apologist::Benchmarks::Types::BenchmarkRunRequest]

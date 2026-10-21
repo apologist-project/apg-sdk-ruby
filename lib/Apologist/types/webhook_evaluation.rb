@@ -2,7 +2,7 @@
 
 module Apologist
   module Types
-    # Result of an evaluation run for CTA/guardrail events.
+    # Result of an evaluation run for CTA, guardrail, or automation events.
     class WebhookEvaluation < Internal::Types::Model
       field :score, -> { Integer }, optional: true, nullable: false
 

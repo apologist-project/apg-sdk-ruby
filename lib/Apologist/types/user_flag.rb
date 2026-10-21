@@ -8,6 +8,8 @@ module Apologist
 
       field :name, -> { String }, optional: true, nullable: false
 
+      field :key, -> { String }, optional: true, nullable: false
+
       field :user_id, -> { Integer }, optional: true, nullable: false
 
       field :team_id, -> { Integer }, optional: true, nullable: false

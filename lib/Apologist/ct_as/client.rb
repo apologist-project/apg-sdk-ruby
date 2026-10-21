@@ -13,7 +13,7 @@ module Apologist
       # Finds matching CTAs based on conversation context, user, session, device, or messages
       #
       # @param request_options [Hash]
-      # @param params [Apologist::Types::CtaMatchRequest]
+      # @param params [Apologist::CtAs::Types::CtaMatchRequest]
       # @option request_options [String] :base_url
       # @option request_options [Hash{String => Object}] :additional_headers
       # @option request_options [Hash{String => Object}] :additional_query_parameters
@@ -21,9 +21,7 @@ module Apologist
       # @option request_options [Integer] :timeout_in_seconds
       #
       # @example
-      #   client.ct_as.match_ctas(request: {
-      #     key: "value"
-      #   })
+      #   client.ct_as.match_ctas
       #
       # @return [Apologist::CtAs::Types::MatchCtasResponse]
       def match_ctas(request_options: {}, **params)
@@ -32,7 +30,7 @@ module Apologist
           base_url: request_options[:base_url],
           method: "POST",
           path: "ctas/match",
-          body: Apologist::Types::CtaMatchRequest.new(params).to_h,
+          body: Apologist::CtAs::Types::CtaMatchRequest.new(params).to_h,
           request_options: request_options
         )
         begin

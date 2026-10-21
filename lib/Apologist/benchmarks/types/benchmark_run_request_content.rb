@@ -9,7 +9,7 @@ module Apologist
 
         member -> { String }
 
-        member -> { Internal::Types::Array[Object] }
+        member -> { Internal::Types::Array[Apologist::Benchmarks::Types::BenchmarkRunRequestContentOneItem] }
       end
     end
   end

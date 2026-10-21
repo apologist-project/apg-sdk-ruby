@@ -2,12 +2,11 @@
 
 module Apologist
   module Types
-    module ChatCompletionRequestReasoningEffort
+    module CompletionRedactResponseMode
       extend Apologist::Internal::Types::Enum
 
-      LOW = "low"
-      MEDIUM = "medium"
-      HIGH = "high"
+      SCRUB = "scrub"
+      ANONYMIZE = "anonymize"
     end
   end
 end

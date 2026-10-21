@@ -39,6 +39,12 @@ module Apologist
         field :min_timestamp, -> { String }, optional: true, nullable: false
 
         field :max_timestamp, -> { String }, optional: true, nullable: false
+
+        field :traceparent, -> { String }, optional: true, nullable: false
+
+        field :tracestate, -> { String }, optional: true, nullable: false
+
+        field :baggage, -> { String }, optional: true, nullable: false
       end
     end
   end

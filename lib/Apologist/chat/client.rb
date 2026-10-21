@@ -38,9 +38,12 @@ module Apologist
       # @option params [String, nil] :user_id
       # @option params [String, nil] :min_timestamp
       # @option params [String, nil] :max_timestamp
+      # @option params [String, nil] :traceparent
+      # @option params [String, nil] :tracestate
+      # @option params [String, nil] :baggage
       #
       # @example
-      #   client.chat.list_chat_completions
+      #   client.chat.list_chat_completions(traceparent: "00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01")
       #
       # @return [Apologist::Chat::Types::ListChatCompletionsResponse]
       def list_chat_completions(request_options: {}, **params)
@@ -65,10 +68,16 @@ module Apologist
         query_params["min_timestamp"] = params[:min_timestamp] if params.key?(:min_timestamp)
         query_params["max_timestamp"] = params[:max_timestamp] if params.key?(:max_timestamp)
 
+        headers = {}
+        headers["traceparent"] = params[:traceparent] if params[:traceparent]
+        headers["tracestate"] = params[:tracestate] if params[:tracestate]
+        headers["baggage"] = params[:baggage] if params[:baggage]
+
         request = Apologist::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "GET",
           path: "chat/completions",
+          headers: headers,
           query: query_params,
           request_options: request_options
         )
@@ -90,26 +99,37 @@ module Apologist
       # responses.
       #
       # @param request_options [Hash]
-      # @param params [Apologist::Types::ChatCompletionRequest]
+      # @param params [Apologist::Chat::Types::ChatCompletionRequest]
       # @option request_options [String] :base_url
       # @option request_options [Hash{String => Object}] :additional_headers
       # @option request_options [Hash{String => Object}] :additional_query_parameters
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String, nil] :traceparent
+      # @option params [String, nil] :tracestate
+      # @option params [String, nil] :baggage
       #
       # @example
-      #   client.chat.create_chat_completion(request: {
-      #     key: "value"
-      #   })
+      #   client.chat.create_chat_completion(traceparent: "00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01")
       #
       # @return [Apologist::Types::ChatCompletionResponse]
       def create_chat_completion(request_options: {}, **params)
         params = Apologist::Internal::Types::Utils.normalize_keys(params)
+        request_data = Apologist::Chat::Types::ChatCompletionRequest.new(params).to_h
+        non_body_param_names = %w[traceparent tracestate baggage]
+        body = request_data.except(*non_body_param_names)
+
+        headers = {}
+        headers["traceparent"] = params[:traceparent] if params[:traceparent]
+        headers["tracestate"] = params[:tracestate] if params[:tracestate]
+        headers["baggage"] = params[:baggage] if params[:baggage]
+
         request = Apologist::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "POST",
           path: "chat/completions",
-          body: Apologist::Types::ChatCompletionRequest.new(params).to_h,
+          headers: headers,
+          body: body,
           request_options: request_options
         )
         begin
@@ -297,6 +317,83 @@ module Apologist
         code = response.code.to_i
         if code.between?(200, 299)
           Apologist::Types::SuccessResponse.load(response.body)
+        else
+          error_class = Apologist::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
+      # Replaces this chat completion's message-adjacent text with a placeholder. Conversation rows, identifiers, likes,
+      # flags, and analytics identity stay in place. Repeat calls finish leftover rows.
+      #
+      # @param request_options [Hash]
+      # @param params [Hash]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      #
+      # @example
+      #   client.chat.scrub_completion(id: "id")
+      #
+      # @return [Apologist::Chat::Types::ScrubCompletionResponse]
+      def scrub_completion(request_options: {}, **params)
+        params = Apologist::Internal::Types::Utils.normalize_keys(params)
+        request = Apologist::Internal::JSON::Request.new(
+          base_url: request_options[:base_url],
+          method: "POST",
+          path: "chat/completions/#{URI.encode_uri_component(params[:id].to_s)}/scrub",
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Apologist::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          Apologist::Chat::Types::ScrubCompletionResponse.load(response.body)
+        else
+          error_class = Apologist::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
+      # Redacts detected personal data in this chat completion's message-adjacent text with regex, then an optional
+      # hosted redaction service when the Agent has that option on. Conversation rows, identifiers, likes, flags, and
+      # analytics identity stay in place. Repeat calls finish leftover rows and skip text that is already redacted.
+      #
+      # @param request_options [Hash]
+      # @param params [Hash]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      # @option params [String] :id
+      #
+      # @example
+      #   client.chat.anonymize_completion(id: "id")
+      #
+      # @return [Apologist::Chat::Types::AnonymizeCompletionResponse]
+      def anonymize_completion(request_options: {}, **params)
+        params = Apologist::Internal::Types::Utils.normalize_keys(params)
+        request = Apologist::Internal::JSON::Request.new(
+          base_url: request_options[:base_url],
+          method: "POST",
+          path: "chat/completions/#{URI.encode_uri_component(params[:id].to_s)}/anonymize",
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Apologist::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          Apologist::Chat::Types::AnonymizeCompletionResponse.load(response.body)
         else
           error_class = Apologist::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)

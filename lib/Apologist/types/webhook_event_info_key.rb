@@ -8,6 +8,7 @@ module Apologist
       PROMPT_SUBMIT = "prompt_submit"
       RESPONSE_START = "response_start"
       RESPONSE_END = "response_end"
+      AUTOMATION_TRIGGER = "automation_trigger"
       AUTOMATIONS_END = "automations_end"
       RESPONSE_LIKE = "response_like"
       RESPONSE_FLAG = "response_flag"

@@ -3,8 +3,8 @@
 module Apologist
   module Types
     # Canonical JSON body POSTed to a configured webhook URL. `notification`, `event`, and `agent` are always present;
-    # the remaining sections appear only when relevant to the event. Treat the payload as additive and ignore
-    # unrecognised fields.
+    # `trace` is present when the event ran inside an instrumented API request. The remaining sections appear only when
+    # relevant to the event. Treat the payload as additive and ignore unrecognised fields.
     class WebhookPayload < Internal::Types::Model
       field :notification, -> { Apologist::Types::WebhookNotificationRef }, optional: false, nullable: false
 
@@ -22,9 +22,13 @@ module Apologist
 
       field :guardrail, -> { Apologist::Types::WebhookNamedRef }, optional: true, nullable: false
 
+      field :automation, -> { Apologist::Types::WebhookNamedRef }, optional: true, nullable: false
+
       field :evaluator, -> { Apologist::Types::WebhookNamedRef }, optional: true, nullable: false
 
       field :evaluation, -> { Apologist::Types::WebhookEvaluation }, optional: true, nullable: false
+
+      field :trace, -> { Apologist::Types::WebhookPayloadTrace }, optional: true, nullable: false
     end
   end
 end

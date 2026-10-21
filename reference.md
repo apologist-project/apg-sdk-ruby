@@ -27,7 +27,7 @@ Returns a paginated list of chat completions (prompts) for the agent, with appli
 <dd>
 
 ```ruby
-client.chat.list_chat_completions
+client.chat.list_chat_completions(traceparent: "00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01")
 ```
 </dd>
 </dl>
@@ -186,6 +186,30 @@ client.chat.list_chat_completions
 <dl>
 <dd>
 
+**traceparent:** `String` — W3C Trace Context parent. When present, the Agent continues this trace for the request. Applies to all `/api/v1` endpoints.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tracestate:** `String` — Optional W3C tracestate associated with traceparent.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**baggage:** `String` — Optional W3C baggage. Prompt text is never copied onto spans.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `Apologist::Chat::RequestOptions` 
     
 </dd>
@@ -225,9 +249,7 @@ Creates a chat completion using the agent's configured model. Supports both stre
 <dd>
 
 ```ruby
-client.chat.create_chat_completion(request: {
-  key: "value"
-})
+client.chat.create_chat_completion(traceparent: "00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01")
 ```
 </dd>
 </dl>
@@ -242,7 +264,263 @@ client.chat.create_chat_completion(request: {
 <dl>
 <dd>
 
-**request:** `Apologist::Types::ChatCompletionRequest` 
+**traceparent:** `String` — W3C Trace Context parent. When present, the Agent continues this trace for the request. Applies to all `/api/v1` endpoints.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tracestate:** `String` — Optional W3C tracestate associated with traceparent.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**baggage:** `String` — Optional W3C baggage. Prompt text is never copied onto spans.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**audio:** `Internal::Types::Hash[String, Object]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**frequency_penalty:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**logit_bias:** `Internal::Types::Hash[String, Object]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**logprobs:** `Apologist::Chat::Types::ChatCompletionRequestLogprobs` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**top_logprobs:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**max_completion_tokens:** `Integer` — Output-token cap for this request. An API key may set this above the agent's Max Output Tokens. The value cannot exceed the model's maximum. Requests without an API key keep the agent's Max Output Tokens.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**max_tokens:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**messages:** `Internal::Types::Array[Apologist::Types::ChatMessage]` — Chat messages in OpenAI format. Required when `prompt` is omitted.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**metadata:** `Apologist::Chat::Types::ChatCompletionRequestMetadata` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**modalities:** `Internal::Types::Array[Object]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**model:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**n:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**parallel_tool_calls:** `Internal::Types::Boolean` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**prediction:** `Internal::Types::Hash[String, Object]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**presence_penalty:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**prompt:** `String` — User text to complete. Required when `messages` is omitted.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reasoning_effort:** `Apologist::Chat::Types::ChatCompletionRequestReasoningEffort` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**verbosity:** `Apologist::Chat::Types::ChatCompletionRequestVerbosity` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**response_format:** `Apologist::Chat::Types::ChatCompletionRequestResponseFormat` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**seed:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**service_tier:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**stop:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**store:** `Internal::Types::Boolean` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**stream:** `Internal::Types::Boolean` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**stream_options:** `Internal::Types::Hash[String, Object]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**temperature:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**top_p:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tools:** `Internal::Types::Array[Object]` — OpenAI-compatible function tool definitions. Passed through to the model as declaration-only tools (the client executes them and returns role=tool messages).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tool_choice:** `Apologist::Chat::Types::ChatCompletionRequestToolChoice` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**user:** `String` 
     
 </dd>
 </dl>
@@ -567,6 +845,130 @@ client.chat.share_completion(id: "id")
 </dl>
 </details>
 
+<details><summary><code>client.chat.<a href="/lib/Apologist/chat/client.rb">scrub_completion</a>(id:) -> Apologist::Chat::Types::ScrubCompletionResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Replaces this chat completion's message-adjacent text with a placeholder. Conversation rows, identifiers, likes, flags, and analytics identity stay in place. Repeat calls finish leftover rows.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.chat.scrub_completion(id: "id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The numeric id or UUID of the chat completion
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Apologist::Chat::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.chat.<a href="/lib/Apologist/chat/client.rb">anonymize_completion</a>(id:) -> Apologist::Chat::Types::AnonymizeCompletionResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Redacts detected personal data in this chat completion's message-adjacent text with regex, then an optional hosted redaction service when the Agent has that option on. Conversation rows, identifiers, likes, flags, and analytics identity stay in place. Repeat calls finish leftover rows and skip text that is already redacted.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.chat.anonymize_completion(id: "id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The numeric id or UUID of the chat completion
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Apologist::Chat::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.chat.<a href="/lib/Apologist/chat/client.rb">get_chat_completion</a>(id:) -> Apologist::Chat::Types::GetChatCompletionResponse</code></summary>
 <dl>
 <dd>
@@ -762,7 +1164,7 @@ client.corpus.log_corpus_view(
 <dl>
 <dd>
 
-**model:** `String` — The model type (e.g., 'source')
+**model:** `String` — Listing model. One of collection, contributor, organization, or source.
     
 </dd>
 </dl>
@@ -852,7 +1254,7 @@ client.corpus.log_corpus_impression(
 <dl>
 <dd>
 
-**model:** `String` — The model type (e.g., 'source')
+**model:** `String` — Listing model. One of collection, contributor, organization, or source.
     
 </dd>
 </dl>
@@ -942,7 +1344,7 @@ client.corpus.log_corpus_referral_redirect(
 <dl>
 <dd>
 
-**model:** `String` — The model type (e.g., 'source')
+**model:** `String` — Listing model. One of collection, contributor, organization, or source.
     
 </dd>
 </dl>
@@ -1040,7 +1442,7 @@ client.corpus.log_corpus_referral(
 <dl>
 <dd>
 
-**model:** `String` — The model type (e.g., 'source')
+**model:** `String` — Listing model. One of collection, contributor, organization, or source.
     
 </dd>
 </dl>
@@ -1312,7 +1714,7 @@ client.evaluators.evaluate_content(
 <dl>
 <dd>
 
-**content:** `Apologist::Evaluators::Types::EvaluatorRequestContent` 
+**content:** `Apologist::Evaluators::Types::EvaluatorRequestContent` — Text to evaluate, an array of strings, or chat messages.
     
 </dd>
 </dl>
@@ -1489,9 +1891,7 @@ Finds matching CTAs based on conversation context, user, session, device, or mes
 <dd>
 
 ```ruby
-client.ct_as.match_ctas(request: {
-  key: "value"
-})
+client.ct_as.match_ctas
 ```
 </dd>
 </dl>
@@ -1506,7 +1906,71 @@ client.ct_as.match_ctas(request: {
 <dl>
 <dd>
 
-**request:** `Apologist::Types::CtaMatchRequest` 
+**conversation:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**client:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**device:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**language:** `String` — ISO language code, or `auto` to detect from the prompt.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**messages:** `Internal::Types::Array[Apologist::Types::ChatMessage]` — Chat messages in OpenAI format.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**session:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**user:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**variables:** `Internal::Types::Hash[String, String]` — Flat string key/value pairs substituted into `{key}` placeholders in evaluator prompts run during CTA matching. Not persisted.
     
 </dd>
 </dl>
@@ -2215,7 +2679,7 @@ client.benchmarks.list_benchmark_runs(id: "id")
 <dl>
 <dd>
 
-Executes a benchmark run and returns the aggregated result with nested evaluators, questions, and a flat evaluations array.
+Executes a benchmark run and returns the aggregated result with nested evaluators, questions, and a flat evaluations array. A run that cannot finish inside one request returns 202 with `completed_at` null and continues in the background. Poll Get a benchmark run until `completed_at` is set.
 </dd>
 </dl>
 </dd>
@@ -2879,7 +3343,7 @@ client.channels.get_chatwoot_channel_status(id: "id")
 </dl>
 </details>
 
-<details><summary><code>client.channels.<a href="/lib/Apologist/channels/client.rb">receive_chatwoot_webhook</a>(id:, request) -> </code></summary>
+<details><summary><code>client.channels.<a href="/lib/Apologist/channels/client.rb">receive_chatwoot_webhook</a>(channel_id:, request) -> </code></summary>
 <dl>
 <dd>
 
@@ -2907,9 +3371,35 @@ Receives Chatwoot Agent Bot webhook events for the channel. Chatwoot owns the me
 
 ```ruby
 client.channels.receive_chatwoot_webhook(
-  id: "id",
-  body: {
-    key: "value"
+  channel_id: "91",
+  chatwoot_signature: "sha256=2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+  chatwoot_timestamp: "1710000000",
+  event: "message_created",
+  id: 9001,
+  content: "Hello from Messenger",
+  message_type: "incoming",
+  private: false,
+  account: {
+    id: 7
+  },
+  sender: {
+    id: 55,
+    name: "Pat",
+    type: "contact"
+  },
+  conversation: {
+    id: 42,
+    status: "pending",
+    account: {
+      id: 7
+    },
+    meta: {
+      assignee_type: "AgentBot",
+      sender: {
+        id: 55,
+        name: "Pat"
+      }
+    }
   }
 )
 ```
@@ -2926,7 +3416,7 @@ client.channels.receive_chatwoot_webhook(
 <dl>
 <dd>
 
-**id:** `String` — The channel id
+**channel_id:** `String` — The channel id
     
 </dd>
 </dl>
@@ -2950,7 +3440,79 @@ client.channels.receive_chatwoot_webhook(
 <dl>
 <dd>
 
-**request:** `Internal::Types::Hash[String, Object]` — Chatwoot Agent Bot webhook payload (`event` plus message or conversation fields).
+**event:** `String` — Chatwoot event name. Incoming visitor messages use `message_created`. Staff takeover and assignment use conversation events such as `conversation_opened`, `conversation_status_changed`, and `conversation_updated`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**id:** `Integer` — Message id on `message_*` events. Conversation display id on `conversation_*` events.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**content:** `String` — Message text. Present on message events. Empty or private notes are ignored.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**message_type:** `String` — Incoming visitor messages are `incoming` (or `0`). Staff replies are `outgoing` (or `1`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**private:** `Internal::Types::Boolean` — When true, the Agent ignores the message (Chatwoot private note).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**account:** `Apologist::Channels::Types::ChatwootWebhookPayloadAccount` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sender:** `Apologist::Channels::Types::ChatwootWebhookPayloadSender` — Present on message events.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**conversation:** `Apologist::Channels::Types::ChatwootWebhookPayloadConversation` — Nested on message events. Conversation events send `id`, `status`, and `meta` at the top level instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `String` — Top-level conversation status on conversation events.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**meta:** `Apologist::Types::ChatwootConversationMeta` — Top-level conversation meta on conversation events.
     
 </dd>
 </dl>
@@ -3662,7 +4224,7 @@ client.channels.receive_twilio_message(id: "id")
 <dl>
 <dd>
 
-Handles the Meta WhatsApp Cloud API webhook verification handshake, echoing `hub.challenge` when `hub.verify_token` matches the channel's configured token.
+Handles the Meta WhatsApp Cloud API webhook verification handshake. Requires an `api_key` query parameter or `x-api-key` header, then echoes `hub.challenge` when `hub.verify_token` matches the channel's configured token.
 </dd>
 </dl>
 </dd>
@@ -3752,7 +4314,7 @@ client.channels.verify_whats_app_webhook(
 <dl>
 <dd>
 
-Receives WhatsApp Cloud API message events for the channel. Payload shape is defined by Meta. Signature verification via `x-hub-signature-256` is used when the channel has an App Secret configured; otherwise the webhook relies on URL secrecy and/or an `api_key` query parameter.
+Receives WhatsApp Cloud API message events for the channel. Payload shape is defined by Meta. An `api_key` query parameter or `x-api-key` header is required. Signature verification via `x-hub-signature-256` is also required when the channel has an App Secret configured.
 </dd>
 </dl>
 </dd>
@@ -3795,7 +4357,7 @@ client.channels.receive_whats_app_message(
 <dl>
 <dd>
 
-**hub_signature256:** `String` — Meta `sha256=<hex>` HMAC of the raw body keyed with the WhatsApp App Secret. Required when the channel has an App Secret configured and the webhook URL does not include an api_key.
+**hub_signature256:** `String` — Meta `sha256=<hex>` HMAC of the raw body keyed with the WhatsApp App Secret. Required when the channel has an App Secret configured.
     
 </dd>
 </dl>
